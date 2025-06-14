@@ -27,5 +27,10 @@ window.addEventListener('scroll', () => {
    
   }
 });
- const video = document.getElementById('heroimage');
-    video.play();
+ 
+
+    window.onload = () => {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 0); // ensures scroll position is at top
+};
