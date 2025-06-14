@@ -307,6 +307,9 @@ main {
         width: 65%;
         height: auto;
 
+        strong {
+            font-weight: 900;
+        }
 
 
         p:nth-child(6) {
@@ -397,12 +400,28 @@ main {
         align-items: center;
         justify-content: space-between;
 
+        strong {
+            font-weight: 900;
+        }
+
         div {
             width: 100%;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            li {
+                list-style: none;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+
+                span {
+                    margin-top: 1rem;
+                    font-size: 1.1rem;
+                }
+            }
 
             img {
                 height: 25rem;
@@ -482,26 +501,42 @@ main {
         width: 100%;
         height: auto;
         flex-wrap: wrap;
+        padding: 1rem 0rem;
 
         section1 {
+            width: 100%;
             display: none;
         }
 
         section2 {
-            width: 80%;
+            width: 100%;
+
+            .imgs {
+                overflow-x: scroll;
+                padding-bottom: 1rem;
+            }
+
+            p {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
         }
     }
 
     main {
         display: flex;
+        align-items: center;
+        justify-content: center;
         flex-wrap: wrap;
         height: auto;
         padding-bottom: 1.5rem;
+        padding: 1rem 2rem;
+        width: 100%;
 
         .main-content {
             scroll-margin-top: 100px;
             margin-bottom: 1rem;
-            width: 80%;
+            width: 100%;
             height: auto;
 
             p {
@@ -512,15 +547,15 @@ main {
 
 
             p:nth-child(6) {
-                padding-left: 10rem;
+                padding-left: 11rem;
             }
 
             h1:nth-child(4) {
-                padding-left: 1rem;
+                padding-left: 1.6rem;
             }
 
             h2:nth-child(5) {
-                padding-left: 10rem;
+                padding-left: 11rem;
             }
 
             h1 {
@@ -530,7 +565,7 @@ main {
 
             h2 {
 
-                font-size: 1.1rem;
+                font-size: 1.4rem;
             }
         }
     }
