@@ -140,6 +140,7 @@ header {
     }
 
     .getappbtn {
+        text-decoration: none;
         padding: 0.5rem 1.5rem;
         font-size: 1.3rem;
         color: var(--clr-bg);
@@ -150,6 +151,8 @@ header {
         border-radius: 10px;
         border: none;
         margin-right: 2rem;
+        font-family: var(--font-primary);
+        line-height: 1rem;
 
         img {
             height: 1.5rem;
@@ -405,6 +408,7 @@ main {
         }
 
         div {
+            margin-top: 3rem;
             width: 100%;
             overflow: hidden;
             display: flex;
@@ -418,13 +422,13 @@ main {
                 flex-direction: column;
 
                 span {
-                    margin-top: 1rem;
+                    margin-top: 2rem;
                     font-size: 1.1rem;
                 }
             }
 
             img {
-                height: 25rem;
+                height: 27rem;
 
             }
 
@@ -432,7 +436,7 @@ main {
 
         p {
             font-size: 1.5rem;
-            margin-top: 1rem;
+            margin-top: 3rem;
             margin-bottom: 2rem;
         }
 
