@@ -46,7 +46,7 @@ vid.onloadedmetadata = (event) => {
 
 
 function scrollPlay(){  
-  var frameNumber  = (window.pageYOffset/fh)*11 ;
+  var frameNumber  = (window.pageYOffset/fh)*10 ;
   console.log(frameNumber)
   vid.currentTime  = frameNumber;
   window.requestAnimationFrame(scrollPlay);
