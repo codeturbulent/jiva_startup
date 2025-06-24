@@ -34,3 +34,25 @@ window.addEventListener('scroll', () => {
     window.scrollTo(0, 0);
   }, 0); // ensures scroll position is at top
 };
+
+var fn= 0,pc=500 ,fh=document.body.offsetHeight,  vid = document.getElementById("heroimage")
+
+console.log(fn,pc,fh,vid)
+vid.onloadedmetadata = (event) => {
+  console.log(
+    "Animation loaded"
+  );
+};
+
+
+function scrollPlay(){  
+  var frameNumber  = (window.pageYOffset/fh)*11 ;
+  console.log(frameNumber)
+  vid.currentTime  = frameNumber;
+  window.requestAnimationFrame(scrollPlay);
+}
+
+window.requestAnimationFrame(scrollPlay);
+
+
+
