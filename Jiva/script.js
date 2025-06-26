@@ -153,20 +153,31 @@ let tl = gsap.timeline({
     trigger: "#sphere",
     scroller: "body",
     scrub: true,
-
-    start: "top 70%",
+    markers: true,
+    start: "top 50%",
     end: "top 10%",
   },
 });
 
 tl.to("#sphere img", {
-  scale: 4,
+  scale: 6,
+
   duration: 2,
 })
   .to("#sphere img", {
-    scale: 2,
+    scale: 3,
     duration: 1,
   })
   .from("#sphere span", {
     opacity: 0,
   });
+
+// gsap.to("backimages", {
+//   y: 1000,
+//   duration: 4,
+//   scrollTrigger: {
+//     start: "top 0%",
+//     scrub: true,
+//     markers: true,
+//   },
+// });

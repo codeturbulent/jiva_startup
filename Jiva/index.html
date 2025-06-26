@@ -87,7 +87,10 @@
       </div>
     </div>
     <div class="cursobody">
-      <div id="cursorelement"></div>
+      <div id="cursorelement">
+        <img id="cursorelement class="glass-cursor-blob"
+        src="assets/circle_01.png" />
+      </div>
     </div>
     <div class="backimages">
       <img src="assets/pexels-karolina-grabowska-5993567.jpg" alt="" />
@@ -106,6 +109,10 @@
     script.src = `https://codeturbulent.github.io/Basicstyles/jiva_dojo/stylescript.js?t=${Date.now()}`;
     document.head.appendChild(script);
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/pixi.min.js"></script>
+  <img id="disp" src="displacement.png" style="display: none" />
+  <div id="canvas-container"></div>
+
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
     integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="

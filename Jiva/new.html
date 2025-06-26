@@ -1,0 +1,79 @@
+<!-- HTML: add to body -->
+<div id="pixi-container"></div>
+
+<!-- Load PixiJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/browser/pixi.min.js"></script>
+
+<script>
+  // === CONFIG ===
+  const blobRadius = 100; // Like Figma's "radius"
+  const distortionStrength = 75; // Like Figma's "size"
+
+  // === SETUP ===
+  const app = new PIXI.Application({
+    resizeTo: window,
+    transparent: true,
+  });
+  document.getElementById("pixi-container").appendChild(app.view);
+
+  // Background: This could be replaced by your HTML or screenshot canvas
+  const background = PIXI.Sprite.from(
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+  );
+  background.width = window.innerWidth;
+  background.height = window.innerHeight;
+  app.stage.addChild(background);
+
+  // Displacement texture (simulating that “liquid distortion”)
+  const displacementTexture = PIXI.Sprite.from(
+    "https://i.imgur.com/2yYayZk.png"
+  ); // noisy map
+  displacementTexture.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+  displacementTexture.scale.set(2);
+  displacementTexture.alpha = 0; // hide texture image
+  app.stage.addChild(displacementTexture);
+
+  // Displacement filter
+  const displacementFilter = new PIXI.filters.DisplacementFilter(
+    displacementTexture
+  );
+  displacementFilter.scale.x = distortionStrength;
+  displacementFilter.scale.y = distortionStrength;
+  app.stage.filters = [displacementFilter];
+
+  // Blob mask that follows the cursor
+  const blob = new PIXI.Graphics();
+  blob.beginFill(0xffffff);
+  blob.drawCircle(0, 0, blobRadius); // adjustable radius
+  blob.endFill();
+  blob.x = window.innerWidth / 2;
+  blob.y = window.innerHeight / 2;
+  app.stage.addChild(blob);
+
+  // Only apply displacement within the blob
+  background.mask = blob;
+
+  // Move blob and displacement texture with mouse
+  window.addEventListener("mousemove", (e) => {
+    blob.x = e.clientX;
+    blob.y = e.clientY;
+    displacementTexture.x = e.clientX / 2;
+    displacementTexture.y = e.clientY / 2;
+  });
+
+  // Animate distortion texture for movement
+  app.ticker.add(() => {
+    displacementTexture.x += 1.5;
+    displacementTexture.y += 1.5;
+  });
+</script>
+
+<style>
+  /* Container should overlay your UI */
+  #pixi-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+  }
+</style>

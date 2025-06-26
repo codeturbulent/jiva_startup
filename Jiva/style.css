@@ -248,11 +248,13 @@ body {
 
     img {
         height: 6rem;
+        transform: scale(0.2);
+
         margin-top: 2rem;
     }
 
     span {
-        margin-top: 4rem;
+        margin-top: 8rem;
         letter-spacing: 0.35rem;
         padding-left: 1rem;
     }
@@ -429,4 +431,24 @@ body {
     img:nth-child(3) {
         transform: rotate(-180deg) scaleX(-1) translate(49px, 9px);
     }
+}
+
+.glass-cursor-blob,
+.glass-cursor-blob * {
+    box-sizing: border-box;
+}
+
+.glass-cursor-blob {
+    /* Glass cursor blob */
+
+    position: absolute;
+    width: 160px;
+    height: 160px;
+
+    background: rgba(255, 255, 255, 0.11);
+    opacity: 0.9;
+
+    /* Note: backdrop-filter has minimal browser support */
+    transform: rotate(42.98deg);
+
 }
