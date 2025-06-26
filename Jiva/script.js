@@ -154,14 +154,14 @@ let tl = gsap.timeline({
     scroller: "body",
     scrub: true,
 
-    start: "top 60%",
-    end: "top 20%",
+    start: "top 70%",
+    end: "top 10%",
   },
 });
 
 tl.to("#sphere img", {
   scale: 4,
-  duration: 1,
+  duration: 2,
 })
   .to("#sphere img", {
     scale: 2,
