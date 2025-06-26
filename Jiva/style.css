@@ -244,7 +244,14 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: radial-gradient(circle at 100px 100px, #f8f8f8, #00000069);
+    background: radial-gradient(circle at 100px 100px, #f8f8f8, rgba(160, 164, 177, 0.274));
+
+    /* From https://css.glass */
+    background: rgba(170, 195, 241, 0.37);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.5px);
+    -webkit-backdrop-filter: blur(7.5px);
+    border: 1px solid rgba(170, 195, 241, 0.38);
 
     img {
         height: 6rem;
