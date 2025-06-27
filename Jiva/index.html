@@ -50,7 +50,8 @@
     <div class="screenshots">
       <div data-aos="zoom-out" class="ss1">
         <img src="assets/SS1.png" alt="" /><span
-          >SHAPE YOUR <strong>F⠀CUS.</strong></span
+          ><p>SHAPE YOUR</p>
+          <strong>F⠀CUS.</strong> <strong>FOCUS.</strong></span
         >
       </div>
       <div class="ss2">
@@ -80,8 +81,13 @@
     </div>
     <div class="footer">
       <a href="https://testflight.apple.com/join/PZWEa2Hu">
-        <button>App Link</button></a
-      >
+        <button>
+          <img
+            src="https://img.icons8.com/?size=100&id=30659&format=png&color=000000"
+            alt=""
+          />Test App
+        </button>
+      </a>
 
       <div class="contact">
         <p>jiva.communications@gmail.com</p>
@@ -109,13 +115,23 @@
         pointer-events: none;
       "
     ></canvas>
-    <img id="distortionMap" src="assets/flame_02.png" style="display: none" />
-    <img
-      id="maskShape"
-      src="assets/glass-cursor-blob.svg"
+    <div style="display: none" id="imgnodisplay"></div>
+  </body>
+  <script>
+    console.log("done");
+    document.querySelector("#imgnodisplay").innerHTML += `  <img
+      id="distortionMap"
+      src="assets/flame_02.png?t=${Date.now()}"
+      crossorigin="anonymous"
       style="display: none"
     />
-  </body>
+    <img
+      id="maskShape"
+      src="assets/glass-cursor-blob.svg?t=${Date.now()}"
+      style="display: none"
+      crossorigin="anonymous"
+    />`;
+  </script>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
     integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="

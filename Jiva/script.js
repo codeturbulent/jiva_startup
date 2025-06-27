@@ -20,9 +20,12 @@ gsap.from(".main p", {
 gsap.from("#sphere", {
   y: 100,
   delay: 0.4,
+  onComplete: () => {
+    document.get;
+  },
 });
 gsap.to("#sphere", {
-  y: -500,
+  y: -400,
   scale: 1.1,
   scrollTrigger: {
     scrub: true,
@@ -167,6 +170,16 @@ function loadimagesinbackground() {
   console.log(image1height, image2height, image3height);
   ctx.drawImage(image1, 0, 0, sitewidth, image1height);
 
-  ctx.drawImage(image2, 0, image1height - 270, sitewidth, image3height);
+  var ntime2img =
+    Math.floor(
+      (siteheight - (image1height + image3height)) / (image2height - 200)
+    ) + 1;
+  console.log(ntime2img);
+  var change = image1height;
+  for (let index = 0; index < ntime2img; index++) {
+    ctx.drawImage(image2, 0, change - 270, sitewidth, image3height);
+    change += image2height;
+    console.log(change);
+  }
   ctx.drawImage(image3, 0, siteheight - image2height, sitewidth, image2height);
 }
