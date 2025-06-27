@@ -1,45 +1,8 @@
-window.addEventListener("scroll", () => {
-  const header = document.querySelector("header");
-  if (window.scrollY > 50) {
-    // Adjust scroll distance as needed
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
-
 var crcircle = document.getElementById("cursorelement");
 
 var mousep = { x: 0, y: 0 };
 var mousepearly = { x: 0, y: 0 };
 var circlep = { x: 0, y: 0 };
-
-window.addEventListener("mousemove", (e) => {
-  mousep.x = e.x;
-  mousep.y = e.y;
-});
-
-function tick() {
-  circlep.x = mousep.x;
-  circlep.y = mousep.y;
-  var dx = mousep.x - mousepearly.x;
-  var dy = mousep.y - mousepearly.y;
-
-  slope = dy / dx;
-
-  var angle = Math.atan(slope);
-  console.log(dx, dy, angle * (180 / Math.PI));
-
-  mousepearly.y = mousep.y;
-  mousepearly.x = mousep.x;
-
-  var translate3d = `translate3d(${circlep.x}px, ${circlep.y}px, 0px)`;
-  crcircle.style = `transform: ${translate3d}   ;
-     `;
-
-  window.requestAnimationFrame(tick);
-}
-tick();
 
 gsap.to(".main h1", {
   y: 0,
@@ -153,7 +116,6 @@ let tl = gsap.timeline({
     trigger: "#sphere",
     scroller: "body",
     scrub: true,
-    markers: true,
     start: "top 50%",
     end: "top 10%",
   },
@@ -181,3 +143,30 @@ tl.to("#sphere img", {
 //     markers: true,
 //   },
 // });
+
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+const image1 = document.getElementById("scream1");
+const image2 = document.getElementById("scream2");
+const image3 = document.getElementById("scream3");
+let siteheight, sitewidth;
+
+window.addEventListener("load", () => {
+  siteheight = document.documentElement.scrollHeight;
+  sitewidth = document.documentElement.scrollWidth;
+
+  canvas.height = siteheight;
+  canvas.width = sitewidth;
+  loadimagesinbackground();
+});
+function loadimagesinbackground() {
+  console.log(image1, image2, image3);
+  var image1height = image1.height * (sitewidth / image1.width);
+  var image2height = image2.height * (sitewidth / image2.width);
+  var image3height = image3.height * (sitewidth / image3.width);
+  console.log(image1height, image2height, image3height);
+  ctx.drawImage(image1, 0, 0, sitewidth, image1height);
+
+  ctx.drawImage(image2, 0, image1height - 270, sitewidth, image3height);
+  ctx.drawImage(image3, 0, siteheight - image2height, sitewidth, image2height);
+}

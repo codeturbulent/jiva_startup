@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Jiva.</title>
+    <link rel="shortcut icon" href="assets/jivafav.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="assets/locomotive-scroll.css" />
     <link rel="stylesheet" href="style.css" />
@@ -86,17 +88,33 @@
         <p>+91 9081813697</p>
       </div>
     </div>
-    <div class="cursobody">
-      <div id="cursorelement">
-        <img id="cursorelement class="glass-cursor-blob"
-        src="assets/circle_01.png" />
-      </div>
+
+    <div style="display: none">
+      <img id="scream1" src="assets/bgimg1.png" />
+      <img id="scream2" src="assets/bgimg2.png" />
+      <img id="scream3" src="assets/bgimg3.png" />
     </div>
-    <div class="backimages">
-      <img src="assets/pexels-karolina-grabowska-5993567.jpg" alt="" />
-      <img src="assets/pexels-karolina-grabowska-5993561.jpg" alt="" />
-      <img src="assets/pexels-karolina-grabowska-5993557.jpg" alt="" />
-    </div>
+
+    <canvas id="myCanvas">
+      Sorry, your browser does not support canvas.
+    </canvas>
+    <canvas
+      id="cropCanvas"
+      width="250"
+      height="250"
+      style="
+        position: absolute;
+
+        z-index: -1;
+        pointer-events: none;
+      "
+    ></canvas>
+    <img id="distortionMap" src="assets/flame_02.png" style="display: none" />
+    <img
+      id="maskShape"
+      src="assets/glass-cursor-blob.svg"
+      style="display: none"
+    />
   </body>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
@@ -109,9 +127,6 @@
     script.src = `https://codeturbulent.github.io/Basicstyles/jiva_dojo/stylescript.js?t=${Date.now()}`;
     document.head.appendChild(script);
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.8/pixi.min.js"></script>
-  <img id="disp" src="displacement.png" style="display: none" />
-  <div id="canvas-container"></div>
 
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
@@ -122,6 +137,8 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init();
+    let siteHeight, siteWidth;
   </script>
   <script src="script.js"></script>
+  <script src="mousehoverbycodeturbullent.js"></script>
 </html>

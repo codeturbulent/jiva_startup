@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <body>
+    <h1>HTML5 Canvas Draw Image</h1>
+
+    <div style="display: none">
+      <img id="scream1" src="assets/bgimg1.png" />
+      <img id="scream2" src="assets/bgimg2.png" />
+      <img id="scream3" src="assets/bgimg3.png" />
+    </div>
+
+    <canvas id="myCanvas" style="border: 1px solid grey">
+      Sorry, your browser does not support canvas.
+    </canvas>
+    <canvas
+      id="cropCanvas"
+      width="50"
+      height="50"
+      style="border: 1px solid black"
+    ></canvas>
+
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+      const image1 = document.getElementById("scream1");
+      const image2 = document.getElementById("scream2");
+      const image3 = document.getElementById("scream3");
+      let siteheight, sitewidth;
+
+      window.addEventListener("load", () => {
+        siteheight = 7457;
+        sitewidth = 1872;
+        canvas.height = siteheight;
+        canvas.width = sitewidth;
+        loadimagesinbackground();
+      });
+      function loadimagesinbackground() {
+        console.log(image1, image2, image3);
+        var image1height = image1.height * (sitewidth / image1.width);
+        var image2height = image2.height * (sitewidth / image2.width);
+        var image3height = image3.height * (sitewidth / image3.width);
+        console.log(image1height, image2height, image3height);
+        ctx.drawImage(image1, 0, 0, sitewidth, image1height);
+
+        ctx.drawImage(image2, 0, image1height - 270, sitewidth, image3height);
+        ctx.drawImage(
+          image3,
+          0,
+          siteheight - image2height,
+          sitewidth,
+          image2height
+        );
+      }
+
+      const mainCanvas = document.getElementById("myCanvas");
+      const cropCanvas = document.getElementById("cropCanvas");
+      const mainCtx = mainCanvas.getContext("2d");
+      const cropCtx = cropCanvas.getContext("2d");
+
+      // Example background for demonstration
+      mainCtx.fillStyle = "lightblue";
+      mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+      mainCtx.fillStyle = "red";
+      mainCtx.fillRect(100, 100, 100, 100);
+
+      mainCanvas.addEventListener("mousemove", (e) => {
+        const rect = mainCanvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // Size of the cropped region
+        const cropSize = 50;
+        const half = cropSize / 2;
+
+        // Prevent going out of bounds
+        const sx = Math.max(0, mouseX - half);
+        const sy = Math.max(0, mouseY - half);
+
+        // Clear crop canvas
+        cropCtx.clearRect(0, 0, cropCanvas.width, cropCanvas.height);
+
+        // Get image data from main canvas
+        const imageData = mainCtx.getImageData(sx, sy, cropSize, cropSize);
+
+        // Put it into the crop canvas
+        cropCtx.putImageData(imageData, 0, 0);
+      });
+    </script>
+  </body>
+</html>
