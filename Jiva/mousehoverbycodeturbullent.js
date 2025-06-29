@@ -114,7 +114,7 @@ document.body.addEventListener("mousemove", (e) => {
   // Apply clip
   cropCtx.clip(svgPath);
   cropCtx.fillStyle = "rgba(255, 255, 255, 0.4)";
-  cropCtx.shadowColor = "rgba(0, 0, 0, 0.99)";
+
   cropCtx.shadowBlur = 100;
   // Draw buffer image scaled smoothly to cropCanvas
   cropCtx.setTransform(1, 0, 0, 1, 0, 0);

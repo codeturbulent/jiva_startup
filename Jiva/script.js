@@ -167,7 +167,7 @@ function loadimagesinbackground() {
   var image1height = image1.height * (sitewidth / image1.width);
   var image2height = image2.height * (sitewidth / image2.width);
   var image3height = image3.height * (sitewidth / image3.width);
-  console.log(image1height, image2height, image3height);
+  console.log(image1height, image2height, image3height, siteheight);
   ctx.drawImage(image1, 0, 0, sitewidth, image1height);
 
   var ntime2img =
@@ -181,5 +181,5 @@ function loadimagesinbackground() {
     change += image2height;
     console.log(change);
   }
-  ctx.drawImage(image3, 0, siteheight - image2height, sitewidth, image2height);
+  ctx.drawImage(image3, 0, siteheight - image3height, sitewidth, image3height);
 }
