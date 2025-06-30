@@ -67,109 +67,13 @@ body {
     width: 90%;
     font-family: var(--font-primary);
     margin: auto;
-}
 
-header {
-    padding: 1rem 4rem;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    transition: 200ms;
-
-    #menuicon {
-        display: none;
-    }
-
-    .logotext {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        h2 {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: center;
-
-            span {
-                font-family: var(--logofont);
-                font-size: 4rem;
-                font-weight: 900;
-                line-height: 4rem;
-            }
-        }
-    }
-
-    ul {
-        display: none;
-        list-style: none;
-        gap: 20px;
-        width: 28rem;
-        align-items: center;
-        justify-content: space-evenly;
-        font-family: var(--font-heading);
-
-        li {
-            font-size: 1.5rem;
-
-            a {
-                text-decoration: none;
-                color: var(--clr-text);
-                font-weight: 600;
-            }
-        }
-
-        .active {
-            border-bottom: 2px solid var(--clr-accent);
-            padding: 0px 5px;
-        }
-    }
-
-    .getappbtn {
-        text-decoration: none;
-        padding: 0.5rem 1.5rem;
-        font-size: 1.3rem;
-        color: var(--clr-bg);
-        background-color: var(--clr-highlight);
-        display: flex;
-        align-items: center;
-        font-weight: 600;
-        border-radius: 10px;
-        border: none;
-        margin-right: 2rem;
-        font-family: var(--font-primary);
-        line-height: 1rem;
-
-        img {
-            height: 1.5rem;
-            margin-right: 0.4rem;
-        }
-    }
-
-    .getappbtn:hover {
-        background-color: var(--clr-highlight);
-        color: var(--clr-bg);
-        filter: drop-shadow(0px 0px 10px var(--clr-shadow));
-    }
-}
-
-.scrolled {
-    padding: 1rem 8rem;
-    border-bottom: 2px solid var(--clr-accent);
-    background-color: var(--clr-bg);
-    z-index: 100;
-}
-
-body {
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-
+    overflow-x: hidden;
     align-items: center;
+    overflow-y: hidden;
 }
 
 .cursobody {
@@ -219,6 +123,7 @@ body {
     p {
         font-size: 32px;
         font-weight: 400;
+        text-align: center;
     }
 }
 
@@ -231,9 +136,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: radial-gradient(circle at 100px 100px,
-            #f8f8f8,
-            rgba(160, 164, 177, 0.274));
+
 
     /* From https://css.glass */
     background: rgba(209, 209, 209, 0.336);
@@ -283,6 +186,12 @@ body {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    width: 100%;
+
 
     div {
         display: flex;
@@ -291,10 +200,10 @@ body {
         flex-direction: column;
         margin: 3rem 1rem;
         flex-direction: row;
-        height: 90vh;
+        height: 92vh;
 
         img {
-            height: 800px;
+            height: 90%;
         }
 
         span {
@@ -317,35 +226,44 @@ body {
     .ss1 {
         flex-direction: column;
 
+        position: relative;
+
         span {
+
             margin-top: 0;
             margin-left: 0;
-            font-size: 65px;
-            position: relative;
+            width: max-content;
+            height: max-content;
+            position: absolute;
             letter-spacing: 8%;
-            top: -215px;
-            left: -187px;
+            top: 71.5%;
+            left: -101.5%;
+
             display: flex;
 
-            strong:nth-child(3) {
+            strong:nth-child(4) {
+                display: none;
+            }
+
+            br:nth-child(2) {
                 display: none;
             }
 
             p {
                 margin-top: 0rem;
-                font-size: 65px;
                 font-weight: 400;
+                font-size: calc(92vh * 8/100);
             }
 
             strong {
                 margin-left: 1.2rem;
-                font-size: 65px;
+                font-size: calc(92vh * 8/100);
             }
         }
     }
 
     .ss3 {
-        width: 100%;
+        width: 90%;
         flex-direction: row-reverse;
         margin-left: 0;
         justify-content: space-around;
@@ -366,7 +284,7 @@ body {
     }
 
     .ss4 {
-        width: 100%;
+        width: 90%;
         flex-direction: row-reverse;
         margin-left: 0;
         justify-content: space-around;
@@ -452,7 +370,6 @@ body {
     width: 100%;
     z-index: -1;
     overflow-y: hidden;
-    display: none;
 
     img {
         width: 100%;
@@ -474,6 +391,257 @@ body {
         transform: translateY(-30%);
     }
 }
+
+
+#loadercont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: #fafafa;
+    z-index: 100;
+
+    .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+
+        img {
+            height: 200px;
+            animation: scaleUpDown 1.25s ease-in-out forwards infinite;
+        }
+    }
+
+
+}
+
+@keyframes scaleUpDown {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+        /* Scale up */
+    }
+
+    100% {
+        transform: scale(1);
+        /* Back to original */
+    }
+}
+
+
+
+
+@media only screen and (max-width: 1700px) {
+    body {
+        margin: auto;
+        width: 95%;
+    }
+
+    .main {
+        p {
+            font-size: 28px;
+            text-align: center;
+        }
+    }
+
+    #sphere {
+        height: 800px;
+        width: 800px;
+
+        img {
+            height: 5rem;
+
+        }
+
+
+    }
+
+    .screenshots {
+        div {
+            img {
+                height: 90%;
+
+
+            }
+
+            span {
+                margin-top: 20rem;
+                margin-left: 2.5rem;
+
+                h1 {
+                    font-size: 50px;
+                    font-weight: 600;
+                }
+
+                p {
+                    margin-top: 3rem;
+                    font-size: 28px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .ss1 {
+
+            span {
+                font-size: 40px;
+
+            }
+        }
+    }
+
+    .footer {
+        button {
+            font-size: 28px;
+
+        }
+
+        .contact {
+            font-size: 22px;
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    body {
+
+        margin: auto;
+        width: 95%;
+    }
+
+    #sphere {
+        height: 600px;
+        width: 600px;
+
+        img {
+            height: 4rem;
+
+        }
+
+        span {
+            margin-top: 6rem;
+            font-size: 1.3rem;
+        }
+
+
+    }
+
+    .screenshots {
+        div {
+            img {
+                height: 90%;
+
+
+            }
+
+            span {
+                margin-top: 20rem;
+                margin-left: 2.5rem;
+
+                h1 {
+                    font-size: 50px;
+                    font-weight: 600;
+                }
+
+                p {
+                    margin-top: 3rem;
+                    font-size: 28px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .ss1 {
+
+            span {
+                font-size: 40px;
+
+            }
+        }
+    }
+
+    .footer {
+        button {
+            font-size: 28px;
+
+        }
+
+        .contact {
+            font-size: 22px;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+
+
+    .main {
+        & h1 {
+            font-size: 111px;
+        }
+
+        & p {
+            font-size: 16px;
+        }
+    }
+
+    .scroll {
+        & span {
+            margin-top: 0.6rem;
+        }
+
+        & img {
+            height: 1.2rem;
+        }
+
+        height: 4rem;
+        width: 4rem;
+    }
+
+    #sphere {
+        & img {
+            height: 4rem;
+            margin-top: 1rem;
+        }
+
+        & span {
+            margin-top: 6rem;
+            font-size: 1.2rem;
+            letter-spacing: 0.3rem;
+        }
+
+        height: 500px;
+        width: 500px;
+    }
+
+    .screenshots {
+        div {
+            img {
+                width: auto;
+                height: 600px;
+            }
+
+
+        }
+
+        .ss1 {
+
+            img {
+                width: auto;
+            }
+
+        }
+    }
+}
+
 
 @media screen and (max-width: 600px) {
     body {
@@ -665,95 +833,4 @@ body {
             gap: 1rem;
         }
     }
-}
-
-/* if more than 600 */
-
-@media only screen and (min-width: 600px) {
-    body {
-        background-color: rgb(255, 196, 0);
-    }
-
-    .main {
-        & h1 {
-            font-size: 111px;
-        }
-
-        & p {
-            font-size: 16px;
-        }
-    }
-
-    .scroll {
-        & span {
-            margin-top: 0.6rem;
-        }
-
-        & img {
-            height: 1.2rem;
-        }
-
-        height: 4rem;
-        width: 4rem;
-    }
-
-    #sphere {
-        & img {
-            height: 4rem;
-            margin-top: 1rem;
-        }
-
-        & span {
-            margin-top: 6rem;
-            font-size: 1.2rem;
-            letter-spacing: 0.3rem;
-        }
-
-        height: 500px;
-        width: 500px;
-    }
-
-    .screenshots {
-        div {
-            img {
-                width: auto;
-                height: 600px;
-            }
-
-
-        }
-
-        .ss1 {
-
-            img {
-                width: auto;
-            }
-
-        }
-    }
-}
-
-/* if more than 768 */
-
-@media only screen and (min-width: 768px) {
-    body {
-        background-color: rgb(43, 255, 0);
-    }
-}
-
-/* if more than 992 */
-@media only screen and (min-width: 992px) {
-    body {
-        background-color: rgb(0, 255, 234);
-    }
-}
-
-/* if more than 992 */
-
-@media only screen and (min-width: 1200px) {
-    body {
-        background-color: rgb(0, 4, 255);
-    }
-
-
 }

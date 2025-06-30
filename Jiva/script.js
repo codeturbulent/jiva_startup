@@ -4,26 +4,48 @@ var mousep = { x: 0, y: 0 };
 var mousepearly = { x: 0, y: 0 };
 var circlep = { x: 0, y: 0 };
 
-gsap.to(".main h1", {
-  y: 0,
-  opacity: 1,
-  delay: 0.33,
-  duration: 1,
-  ease: "power2.out",
-});
+function loadscreen() {
+  gsap.to(".main h1", {
+    y: 0,
+    opacity: 1,
+    delay: 0.33,
+    duration: 1,
+    ease: "power2.out",
+  });
 
-gsap.from(".main p", {
-  y: -50,
-  delay: 0.33,
-  opacity: 0,
-});
-gsap.from("#sphere", {
-  y: 100,
-  delay: 0.4,
-  onComplete: () => {
-    document.get;
-  },
-});
+  gsap.from(".main p", {
+    y: -50,
+    delay: 0.33,
+    opacity: 0,
+  });
+  gsap.from("#sphere", {
+    y: 100,
+    delay: 0.4,
+    onComplete: () => {
+      document.get;
+    },
+  });
+
+  gsap.from(".scroll", {
+    scale: 0.1,
+    opacity: 0.2,
+    delay: 0.4,
+  });
+  gsap.to(".scroll", {
+    opacity: 0.2,
+    duration: 3,
+    delay: 0.4,
+    scrollTrigger: {
+      scrub: true,
+      trigger: ".scroll",
+      scroller: "body",
+
+      start: "top 70%",
+      end: "top 30%",
+    },
+  });
+}
+
 gsap.to("#sphere", {
   y: -400,
   scale: 1.1,
@@ -31,24 +53,6 @@ gsap.to("#sphere", {
     scrub: true,
 
     pin: true,
-  },
-});
-gsap.from(".scroll", {
-  scale: 0.1,
-  opacity: 0.2,
-  delay: 0.4,
-});
-gsap.to(".scroll", {
-  opacity: 0.2,
-  duration: 3,
-  delay: 0.4,
-  scrollTrigger: {
-    scrub: true,
-    trigger: ".scroll",
-    scroller: "body",
-
-    start: "top 70%",
-    end: "top 30%",
   },
 });
 gsap.from(".ss1", {
@@ -161,6 +165,9 @@ window.addEventListener("load", () => {
   canvas.height = siteheight;
   canvas.width = sitewidth;
   loadimagesinbackground();
+  document.getElementById("loadercont").style.display = "none";
+  document.querySelector("body").style.overflowY = "scroll";
+  loadscreen();
 });
 function loadimagesinbackground() {
   console.log(image1, image2, image3);
