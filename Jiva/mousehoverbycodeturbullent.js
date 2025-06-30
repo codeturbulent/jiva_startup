@@ -3,22 +3,21 @@ const cropCanvas = document.getElementById("cropCanvas");
 const mainCtx = mainCanvas.getContext("2d");
 const cropCtx = cropCanvas.getContext("2d");
 const distortionImg = document.getElementById("distortionMap");
+const maskImg = document.getElementById("maskImage");
 
-// Hi-res buffer canvas for supersampling
+// High-res buffer canvas for supersampling
 const bufferSize = 500;
+const cropSize = 300;
+const zoomFactor = bufferSize / cropSize;
+const distortionStrength = 50;
+
 const bufferCanvas = document.createElement("canvas");
 bufferCanvas.width = bufferSize;
 bufferCanvas.height = bufferSize;
 const bufferCtx = bufferCanvas.getContext("2d");
 
-const cropSize = 170;
-const zoomFactor = bufferSize / cropSize;
-const distortionStrength = 20;
-let distortionData;
-let svgPath;
-let svgPathLoaded = false;
+let distortionData = null;
 
-// Load and resize distortion map
 distortionImg.onload = () => {
   const tempCanvas = document.createElement("canvas");
   tempCanvas.width = bufferSize;
@@ -28,34 +27,14 @@ distortionImg.onload = () => {
   distortionData = tempCtx.getImageData(0, 0, bufferSize, bufferSize).data;
 };
 
-// Load SVG Path
-fetch("assets/glass-cursor-blob.svg")
-  .then((res) => res.text())
-  .then((svgText) => {
-    const parser = new DOMParser();
-    const svgDoc = parser.parseFromString(svgText, "image/svg+xml");
-    const pathElement = svgDoc.querySelector("path");
-    const svgPathString = pathElement.getAttribute("d");
-    svgPath = new Path2D(svgPathString);
-    svgPathLoaded = true;
-  });
+// Optional background drawing
 
-// Draw something on canvas
-// mainCtx.fillStyle = "lightblue";
-// mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
-// mainCtx.fillStyle = "red";
-// mainCtx.fillRect(100, 100, 200, 200);
-// mainCtx.fillStyle = "green";
-// mainCtx.font = "40px Arial";
-// mainCtx.fillText("Zoom Me!", 300, 300);
-
-// Mousemove
 document.body.addEventListener("mousemove", (e) => {
-  if (!distortionData || !svgPathLoaded) return;
+  if (!distortionData) return;
 
   const rect = mainCanvas.getBoundingClientRect();
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
+  const mouseX = e.clientX - rect.left + 35;
+  const mouseY = e.clientY - rect.top + 35;
 
   const half = cropSize / 2;
   const sx = Math.max(0, Math.min(mainCanvas.width - cropSize, mouseX - half));
@@ -87,42 +66,40 @@ document.body.addEventListener("mousemove", (e) => {
     }
   }
 
-  // Draw to buffer canvas
+  // Draw to buffer
   bufferCtx.putImageData(output, 0, 0);
 
-  // Clear and prepare cropCanvas
+  // Prepare crop canvas
   cropCtx.clearRect(0, 0, cropCanvas.width, cropCanvas.height);
-  cropCtx.save();
+  const tmpCanvas = document.createElement("canvas");
+  tmpCanvas.width = cropCanvas.width;
+  tmpCanvas.height = cropCanvas.height;
+  const tmpCtx = tmpCanvas.getContext("2d");
 
-  // Mask with SVG blob
-  cropCtx.setTransform(1, 0, 0, 1, 0, 0);
-  const svgViewBoxSize = 250;
-  const scaleMultiplier = 1.3; // Makes blob ~30% larger
+  // Draw blurred background with distortion
+  tmpCtx.drawImage(
+    bufferCanvas,
+    0,
+    0,
+    bufferCanvas.width,
+    bufferCanvas.height,
+    0,
+    0,
+    cropCanvas.width,
+    cropCanvas.height
+  );
 
-  // Calculate scaling to make blob fit slightly larger than canvas
-  const scale = (cropCanvas.width / svgViewBoxSize) * scaleMultiplier;
+  // Apply blob mask
+  tmpCtx.globalCompositeOperation = "destination-in";
+  tmpCtx.drawImage(maskImg, 0, 0, cropCanvas.width, cropCanvas.height);
 
-  // Center canvas
-  cropCtx.translate(cropCanvas.width / 2, cropCanvas.height / 2);
+  // Optional blur effect
+  // cropCtx.shadowColor = "rgba(0,0,0,0.2)";
+  // cropCtx.shadowBlur = 12;
 
-  // Scale up the blob
-  cropCtx.scale(scale, scale);
+  cropCtx.drawImage(tmpCanvas, 0, 0);
 
-  // Center the SVG path (assuming it's centered at 50,50)
-  cropCtx.translate(-svgViewBoxSize / 2, -svgViewBoxSize / 2);
-
-  // Apply clip
-  cropCtx.clip(svgPath);
-  cropCtx.fillStyle = "rgba(255, 255, 255, 0.4)";
-
-  cropCtx.shadowBlur = 100;
-  // Draw buffer image scaled smoothly to cropCanvas
-  cropCtx.setTransform(1, 0, 0, 1, 0, 0);
-  cropCtx.drawImage(bufferCanvas, 0, 0, cropCanvas.width, cropCanvas.height);
-
-  cropCtx.restore();
-
-  // Move cropCanvas to mouse
+  // Move blob to follow mouse
   cropCanvas.style.left = `${e.pageX - cropCanvas.width / 2}px`;
   cropCanvas.style.top = `${e.pageY - cropCanvas.height / 2}px`;
 });

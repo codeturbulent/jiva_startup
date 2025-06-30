@@ -835,3 +835,8 @@ body {
         }
     }
 }
+
+
+.blurred-svg {
+    filter: blur(6px);
+}

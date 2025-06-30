@@ -100,8 +100,8 @@
     </canvas>
     <canvas
       id="cropCanvas"
-      width="250"
-      height="250"
+      width="300"
+      height="300"
       style="
         position: absolute;
 
@@ -109,10 +109,11 @@
         pointer-events: none;
       "
     ></canvas>
+
     <div style="display: none" id="imgnodisplay"></div>
   </body>
+
   <script>
-    console.log("done");
     document.querySelector("#imgnodisplay").innerHTML += `  <img
       id="distortionMap"
       src="assets/flame_02.png?t=${Date.now()}"
@@ -120,8 +121,8 @@
       style="display: none"
     />
     <img
-      id="maskShape"
-      src="assets/glass-cursor-blob.svg?t=${Date.now()}"
+      id="maskImage"
+       src="assets/flame_01.png?t=${Date.now()}"
       style="display: none"
       crossorigin="anonymous"
     />`;

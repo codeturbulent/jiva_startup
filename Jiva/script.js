@@ -1,9 +1,3 @@
-var crcircle = document.getElementById("cursorelement");
-
-var mousep = { x: 0, y: 0 };
-var mousepearly = { x: 0, y: 0 };
-var circlep = { x: 0, y: 0 };
-
 function loadscreen() {
   gsap.to(".main h1", {
     y: 0,
