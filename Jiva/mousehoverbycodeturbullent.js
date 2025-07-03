@@ -6,8 +6,8 @@ const distortionImg = document.getElementById("distortionMap");
 const maskImg = document.getElementById("maskImage");
 
 // High-res buffer canvas for supersampling
-const bufferSize = 800;
-const cropSize = 700;
+const bufferSize = 700;
+const cropSize = 600;
 const zoomFactor = bufferSize / cropSize;
 const distortionStrength = 30;
 

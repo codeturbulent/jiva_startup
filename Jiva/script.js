@@ -162,6 +162,11 @@ window.addEventListener("load", () => {
   document.getElementById("loadercont").style.display = "none";
   document.querySelector("body").style.overflowY = "scroll";
   loadscreen();
+  const audio = document.getElementById("myaudio");
+  audio.play().catch((error) => {
+    console.warn("Autoplay blocked. User interaction needed.");
+    console.error(error);
+  });
 });
 function loadimagesinbackground() {
   console.log(image1, image2, image3);

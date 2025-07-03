@@ -623,8 +623,11 @@ body {
         width: 500px;
     }
 
+
     .screenshots {
         div {
+            flex-direction: column;
+
             img {
                 width: auto;
                 height: 600px;
@@ -633,30 +636,51 @@ body {
 
         }
 
-        .ss1 {
+        .ss3 {
+            flex-direction: column;
+        }
 
 
-            img {
-                width: auto;
+        div {
+            & span {
+                margin-top: 20rem;
+                margin-left: 2.5rem;
+                margin: 1rem;
+            }
+        }
+    }
+
+
+    .ss4 {
+        flex-direction: row-reverse;
+        flex-direction: column;
+    }
+
+
+    .ss1 {
+
+
+        img {
+            width: auto;
+        }
+
+        span {
+            position: unset;
+            flex-direction: column;
+
+            strong:nth-child(4) {
+                display: block;
             }
 
-            span {
-                position: unset;
-                flex-direction: column;
-
-                strong:nth-child(4) {
-                    display: block;
-                }
-
-                strong:nth-child(3) {
-                    display: none;
-                }
-
+            strong:nth-child(3) {
+                display: none;
             }
 
         }
+
     }
 }
+
 
 
 @media screen and (max-width: 600px) {
