@@ -1,123 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="assets/jivafav.png" type="image/x-icon" />
-  <title>Jiva. </title>
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <!-- Style Imports -->
-  <link rel="stylesheet" href="style.css" />
-  <!-- Font Import -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Overlock+SC&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
-    rel="stylesheet" />
-</head>
+    <title>Jiva.</title>
+    <link rel="shortcut icon" href="assets/jivafav.png" type="image/x-icon" />
 
-<body>
-
-  <header>
-    <div class="logotext">
-
-      <h2 data-aos="fade-right" data-aos-delay="200"><span>Jiva.</span>
+    <link rel="stylesheet" href="assets/locomotive-scroll.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="loadercont">
+      <div class="loader">
+        <img src="assets/jivafav.png" alt="" />
+        <h2>Loading...</h2>
+      </div>
+    </div>
+    <div class="musicp" style="display: none">
+      <audio id="myaudio" src="assets/zen-garden-310599.mp3"></audio>
+    </div>
+    <div class="main">
+      <h1 class="scroll-out">Jiva.</h1>
+      <p>
+        A context aware AI study buddy to help you with deep reading workflows.
+      </p>
+    </div>
+    <div class="scroll">
+      <span>Scroll</span
+      ><img
+        src="https://img.icons8.com/?size=100&id=2760&format=png&color=000000"
+        alt=""
+      />
     </div>
 
-    <a target="_blank" href="https://testflight.apple.com/join/PZWEa2Hu" data-aos="fade-left" data-aos-delay="200"
-      class="getappbtn">
-      <img src="https://img.icons8.com/?size=100&id=aO3W9kKC9PMv&format=png&color=fafafa" alt="save" />
-      Get App
-    </a>
-
-  </header>
-
-  <main id="Home" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
-    <div class="main-content">
-      <p>In a world where apps are intentionally designed to scatter our attention, we find a growing struggle with
-        sustained focus and mental clarity.</p>
-      <p>
-        The need for an experience that enhances attention rather than demanding more of it, has never been greater.
-      </p>
-      <h2>At</h2>
-      <h1>JIVA</h1>
-      <h2>We Believe,</h2>
-      <p>
-        <strong>True mental clarity</strong> and <strong>cognitive strength</strong> arise from the ability to
-        <strong>direct our attention with intention</strong>.
-        And so we built...
-      </p>
-      <h2 style="text-align: center;">A space where intelligence meets intention </h2>
-
+    <div id="sphere">
+      <img src="assets/logobig.png" alt="" /> <span>Focus Personified.</span>
     </div>
-    <section class="iphonemokup">
-      <img src="assets/iphone.png" alt="" srcset="">
-      <video id="heroimage"  preload="preload" height="750px"  muted playsinline  src="assets/Jiva logo animation.mp4"
-        type="video/mp4"></video>
-        <!-- <div class="costommadeanimaion">
-          <img src="assets/jiva.png" alt="">
-          <h1>Focus Personified.</h1>
-        </div> -->
-    </section>
-  </main>
-
-  <div id="whoweare" class="second-cont">
-    <section1>
-      <img data-aos="fade-right" data-aos-delay="100" data-aos-once="true" data-aos-duration="800" src="assets/SS1.png "
-        alt="">
-
-    </section1>
-    <section2 data-aos="fade-left" data-aos-delay="100" data-aos-once="true" data-aos-duration="800">
-      <div class="imgs">
-        <li><img src="assets/SS1(1).jpeg" alt=""><span>Subtle Transitions</span></li>
-        <li> <img src="assets/SS2.jpeg" alt=""> <span>Customizable AI</span></li>
-        <li> <img src="assets/SS3.jpeg" alt=""><span>Minimal UI</span></li>
-        <li> <img src="assets/SS4.jpeg" alt=""><span>Personalized Context</span></li>
-        <li> <img src="assets/SS5.jpeg" alt=""><span>In-Bulit Focus Assistance</span></li>
-
-
-
+    <div class="screenshots">
+      <div data-aos="zoom-out" class="ss1">
+        <img src="assets/SS1.png" alt="" /><span
+          ><p>SHAPE YOUR</p>
+          <br />
+          <strong>F⠀ CUS.</strong> <strong>FOCUS.</strong></span
+        >
       </div>
-      <p>
-        Jiva integrates <strong> digital reading with AI</strong> to create an experience that evokes <strong>deep focus
-        </strong>,<strong> better comprehension </strong>,<strong> </strong> and<strong> clearer thinking </strong>
-        through structured, insightful engagement optimized for absorption over consumption.
-      </p>
-
-      <div class="getappicons">
-        <a href=""><img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1280px-Google_Play_Store_badge_EN.svg.png"
-            alt=""></a>
-        <a href=""> <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/2560px-Download_on_the_App_Store_Badge.svg.png"
-            alt=""></a>
+      <div class="ss2">
+        <img src="assets/SS2.png" alt="" /><span
+          ><h1>A Coachable Coach.</h1>
+          <p>Adaptive explanations based on user preferences</p></span
+        >
       </div>
+      <div class="ss3">
+        <img src="assets/SS3.png" alt="" /><span
+          ><h1>An Unseen Interface.</h1>
+          <p>Transitions that don’t feel like transitions</p></span
+        >
+      </div>
+      <div class="ss4">
+        <img src="assets/SS4.png" alt="" /><span
+          ><h1>Dynamic Context.</h1>
+          <p>Maintains live context around what you’re reading</p></span
+        >
+      </div>
+      <div class="ss5">
+        <img src="assets/SS5.png" alt="" /><span
+          ><h1>In-built Focus Assistance.</h1>
+          <p>Designed to respond without derailing your reading</p></span
+        >
+      </div>
+    </div>
+    <div class="footer">
+      <a href="https://testflight.apple.com/join/PZWEa2Hu">
+        <button>
+          <img
+            src="https://img.icons8.com/?size=100&id=30659&format=png&color=000000"
+            alt=""
+          />Test App
+        </button>
+      </a>
 
-    </section2>
-  </div>
-  <div class="third-cont">
+      <div class="contact">
+        <p>jiva.communications@gmail.com</p>
+        <p>+91 9081813697</p>
+      </div>
+    </div>
 
+    <div style="display: none">
+      <img id="scream1" src="assets/bgimg1.png" />
+      <img id="scream2" src="assets/bgimg2.png" />
+      <img id="scream3" src="assets/bgimg3.png" />
+    </div>
 
-  </div>
+    <canvas id="myCanvas">
+      Sorry, your browser does not support canvas.
+    </canvas>
+    <canvas
+      id="cropCanvas"
+      width="700"
+      height="700"
+      style="
+        position: absolute;
 
-  </div>
-  <footer>
-    <p>Copyright © 2025 Jiva Dojo LLP , All Rights Reserved.</p>
-    <p><span>jiva.communications@gmail.com</span> <span class="hr">|</span> <span>+91 90818 13697</span></p>
-  </footer>
-</body>
+        z-index: -1;
+        pointer-events: none;
+      "
+    ></canvas>
 
-<!-- Script -->
-<script>
-  const script = document.createElement("script");
-  script.src = `https://codeturbulent.github.io/Basicstyles/jiva_dojo/stylescript.js?t=${Date.now()}`;
-  document.head.appendChild(script);
-</script>
-<script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
+    <div style="display: none" id="imgnodisplay"></div>
+  </body>
 
+  <script>
+    document.querySelector("#imgnodisplay").innerHTML += `  <img
+      id="distortionMap"
+      src="assets/flame_02.png?t=${Date.now()}"
+      crossorigin="anonymous"
+      style="display: none"
+    />
+    <img
+      id="maskImage"
+       src="assets/flame_01.png?t=${Date.now()}"
+      style="display: none"
+      crossorigin="anonymous"
+    />`;
+  </script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+    integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script>
+    const script = document.createElement("script");
+    script.src = `https://codeturbulent.github.io/Basicstyles/jiva_dojo/stylescript.js?t=${Date.now()}`;
+    document.head.appendChild(script);
+  </script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+    integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    let siteHeight, siteWidth;
+  </script>
+  <script src="script.js"></script>
+  <script src="mousehoverbycodeturbullent.js"></script>
 </html>
