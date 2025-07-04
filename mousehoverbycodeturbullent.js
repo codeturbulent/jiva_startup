@@ -6,8 +6,8 @@ const distortionImg = document.getElementById("distortionMap");
 const maskImg = document.getElementById("maskImage");
 
 // High-res buffer canvas for supersampling
-const bufferSize = 700;
-const cropSize = 600;
+const bufferSize = 500;
+var cropSize = 400;
 const zoomFactor = bufferSize / cropSize;
 const distortionStrength = 30;
 
@@ -33,8 +33,8 @@ document.body.addEventListener("mousemove", (e) => {
   if (!distortionData) return;
 
   const rect = mainCanvas.getBoundingClientRect();
-  const mouseX = e.clientX - rect.left + 35;
-  const mouseY = e.clientY - rect.top + 35;
+  const mouseX = e.clientX - rect.left + 30;
+  const mouseY = e.clientY - rect.top + 30;
 
   const half = cropSize / 2;
   const sx = Math.max(0, Math.min(mainCanvas.width - cropSize, mouseX - half));
@@ -103,3 +103,20 @@ document.body.addEventListener("mousemove", (e) => {
   cropCanvas.style.left = `${e.pageX - cropCanvas.width / 2}px`;
   cropCanvas.style.top = `${e.pageY - cropCanvas.height / 2}px`;
 });
+
+function checkcursorpos(e) {
+  var windowsize = {
+    x: document.documentElement.scrollWidth,
+    y: document.documentElement.scrollHeight,
+  };
+
+  if (windowsize.x - e.pageX < cropSize / 2) {
+    cropSize = windowsize.x - e.pageX;
+  } else if (windowsize.y - e.pageY < cropSize / 2) {
+    cropSize = windowsize.x - e.pageX;
+  } else if (e.pageX < cropSize / 2) {
+    cropSize = windowsize.x - e.pageX;
+  } else if (e.pageY < cropSize / 2) {
+    cropSize = windowsize.x - e.pageX;
+  }
+}

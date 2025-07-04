@@ -151,41 +151,93 @@ const image1 = document.getElementById("scream1");
 const image2 = document.getElementById("scream2");
 const image3 = document.getElementById("scream3");
 let siteheight, sitewidth;
-
+const viewportWidth = window.innerWidth;
 window.addEventListener("load", () => {
-  siteheight = document.documentElement.scrollHeight;
-  sitewidth = document.documentElement.scrollWidth;
+  siteheight = document.body.scrollHeight;
+  sitewidth = document.body.scrollWidth;
 
   canvas.height = siteheight;
-  canvas.width = sitewidth;
+  canvas.width = viewportWidth;
   loadimagesinbackground();
   document.getElementById("loadercont").style.display = "none";
   document.querySelector("body").style.overflowY = "scroll";
   loadscreen();
-  const audio = document.getElementById("myaudio");
-  audio.play().catch((error) => {
-    console.warn("Autoplay blocked. User interaction needed.");
-    console.error(error);
-  });
 });
 function loadimagesinbackground() {
-  console.log(image1, image2, image3);
-  var image1height = image1.height * (sitewidth / image1.width);
-  var image2height = image2.height * (sitewidth / image2.width);
-  var image3height = image3.height * (sitewidth / image3.width);
-  console.log(image1height, image2height, image3height, siteheight);
+  var image1height = image1.height * (viewportWidth / image1.width);
+  var image2height = image2.height * (viewportWidth / image2.width);
+  var image3height = image3.height * (viewportWidth / image3.width);
+  // console.log(
+  //   image1height,
+  //   image2height,
+  //   image3height,
+  //   siteheight,
+  //   canvas.height
+  // );
   ctx.drawImage(image1, 0, 0, sitewidth, image1height);
-
+  // 1885.241245136187 1830.9895833333333 1964.0277777777776 7188
+  // 3
+  // 3716.23082846952
+  // 5547.220411802853
+  // 7378.209995136186
+  // 1885.241245136187 1830.9895833333333 1964.0277777777776 7188
+  // 3
+  // 3716.23082846952
+  // 5547.220411802853
+  // 7378.209995136186
   var ntime2img =
     Math.floor(
-      (siteheight - (image1height + image3height)) / (image2height - 200)
+      (siteheight - (image1height + image3height)) / (image2height - 270)
     ) + 1;
-  console.log(ntime2img);
+  // console.log(ntime2img);
   var change = image1height;
   for (let index = 0; index < ntime2img; index++) {
-    ctx.drawImage(image2, 0, change - 270, sitewidth, image3height);
-    change += image2height;
-    console.log(change);
+    ctx.drawImage(image2, 0, change - 270, sitewidth, image2height);
+    change += image2height - 270;
+    // console.log(change);
   }
   ctx.drawImage(image3, 0, siteheight - image3height, sitewidth, image3height);
+}
+
+count = 0;
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50 && count == 0) {
+    document.getElementById("playButton").dataset.playing = "true";
+    document.getElementById(
+      "playButton"
+    ).innerHTML = `<img src="https://img.icons8.com/?size=100&id=61012&format=png&color=000000" alt="" />`;
+    document
+      .getElementById("myaudio")
+      .play()
+      .catch((error) => {
+        console.warn("Audio blocked. ");
+        console.error(error);
+      });
+    count = 1;
+  }
+});
+
+function playAudio() {
+  var button = document.getElementById("playButton");
+  if (button.dataset.playing == "true") {
+    button.dataset.playing = "false";
+    button.innerHTML = `<img   style="margin-left: 0.2rem" src="https://img.icons8.com/?size=100&id=fjx0LfGCNuZb&format=png&color=000000" alt="" />`;
+    document.getElementById("myaudio").pause();
+  } else {
+    button.dataset.playing = "true";
+    button.innerHTML = `<img src="https://img.icons8.com/?size=100&id=61012&format=png&color=000000" alt="" />`;
+    document
+      .getElementById("myaudio")
+      .play()
+      .catch((error) => {
+        console.warn("Audio blocked. ");
+        console.error(error);
+      });
+  }
+}
+
+function setvol(params) {
+  var audio = document.getElementById("myaudio");
+  audio.volume = params / 100;
+  console.log(audio.volume);
 }
