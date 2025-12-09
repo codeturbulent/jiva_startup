@@ -1,193 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jiva.</title>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/jivafav.png" type="image/x-icon" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jiva.</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/jivafav.png" type="image/x-icon" />
+<!-- Meta Tags for Jiva - Mindful Reading Platform -->
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="assets/locomotive-scroll.css" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<!-- Essential Meta Tags -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-  <body>
-    <!-- Loader -->
-    <div id="loadercont">
-      <div class="loader">
-        <img src="assets/jivafav.png" alt="" />
-        <h2>Loading...</h2>
-      </div>
+<!-- SEO Meta Tags -->
+<meta name="description" content="Jiva. - An immersive space for mindful reading. Powered by AI with multilingual support, voice navigation, and conversational assistance. Read with deeper focus and personalized flow." />
+<meta name="keywords" content="mindful reading, AI reading, digital reading platform, voice navigation, multilingual reader, immersive reading experience, adaptive UI, contextual AI, reading assistant, focus reading, Jiva." />
+<meta name="author" content="Jiva" />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+<meta name="revisit-after" content="7 days" />
+<meta name="theme-color" content="#000000" />
+
+<!-- Open Graph Meta Tags (Social Media) -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://jiva.today" />
+<meta property="og:title" content="Jiva. - Immersive Space for Mindful Reading" />
+<meta property="og:description" content="Experience effortless reading with AI-powered immersion. Multilingual support, voice navigation, and contextual assistance. Read smarter, focus deeper." />
+<meta property="og:image" content="https://jiva.today/assets/logobig.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Jiva" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@JivaApp" />
+<meta name="twitter:title" content="Jiva. - Mindful Reading Redefined" />
+<meta name="twitter:description" content="Read with focus. Flow effortlessly through pages with AI assistance, voice navigation, and multilingual support. Jiva. makes reading immersive and intentional." />
+<meta name="twitter:image" content="https://jiva.app/assets/logobig.png" />
+<meta name="twitter:creator" content="@JivaApp" />
+
+<!-- Additional SEO Meta Tags -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-title" content="Jiva" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://jiva.today" />
+
+<!-- Structured Data (Schema.org JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Jiva",
+  "description": "An immersive space for mindful reading powered by AI with multilingual support, voice navigation, and contextual assistance.",
+  "url": "https://jiva.today",
+  "applicationCategory": "ProductionApplication",
+  "operatingSystem": "iOS, Android, Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "150"
+  },
+  "screenshot": "https://jiva.app/assets/SS1.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Jiva",
+    "url": "https://jiva.app",
+    "email": "jiva.communications@gmail.com"
+  }
+}
+</script>
+
+<!-- Alternative Language Support (if applicable) -->
+<link rel="alternate" hreflang="en" href="https://jiva.today" />
+<link rel="alternate" hreflang="x-default" href="https://jiva.today" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/locomotive-scroll.css" />
+  <link rel="stylesheet" href="style.css?v=1.2.2" />
+</head>
+
+<body>
+  <!-- Loader -->
+  <div id="loadercont">
+    <div class="loader">
+      <img src="assets/jivafav.png" alt="" />
+      <h2>Loading...</h2>
     </div>
-    <!-- Canvases -->
-    <canvas id="myCanvas">Sorry, your browser does not support canvas.</canvas>
-    <canvas
-      id="cropCanvas"
-      width="500"
-      height="500"
-      style="position: absolute; z-index: -1; pointer-events: none"
-    ></canvas>
-    <!-- Audio (Hidden) -->
-    <div class="musicp">
-      <button id="playButton" data-playing="true" onclick="playAudio()">
-        <img
-          style="margin-left: 0.2rem"
-          src="https://img.icons8.com/?size=100&id=fjx0LfGCNuZb&format=png&color=000000"
-          alt=""
-        />
-      </button>
-      <div id="myaudiovol">
-        <input
-          id="myaudiovo"
-          type="range"
-          value="100%"
-          onchange="setvol(this.value)"
-        />
-      </div>
-
-      <audio id="myaudio" loop src="assets/zen-garden.mp3"></audio>
-    </div>
-
-    <!-- Main Hero Section -->
-    <div class="main">
-      <h1 class="scroll-out">Jiva.</h1>
-      <p>
-        A context aware AI study buddy to help you with deep reading workflows.
-      </p>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="scroll">
-      <span>Scroll</span>
-      <img
-        src="https://img.icons8.com/?size=100&id=2760&format=png&color=000000"
-        alt=""
-      />
-    </div>
-
-    <!-- Logo Sphere Section -->
-    <div id="sphere">
-      <img src="assets/logobig.png" alt="" />
-      <span>Focus Personified.</span>
-    </div>
-
-    <!-- Screenshot Showcase -->
-    <div class="screenshots">
-      <div data-aos="zoom-out" class="ss1">
-        <img src="assets/SS1.png" alt="" />
-        <span>
-          <p>SHAPE YOUR</p>
-          <br />
-          <strong>F⠀ CUS.</strong> <strong>FOCUS.</strong>
-        </span>
-      </div>
-
-      <div class="ss2">
-        <img src="assets/SS2.png" alt="" />
-        <span>
-          <h1>A Coachable Coach.</h1>
-          <p>Adaptive explanations based on user preferences</p>
-        </span>
-      </div>
-
-      <div class="ss3">
-        <img src="assets/SS3.png" alt="" />
-        <span>
-          <h1>An Unseen Interface.</h1>
-          <p>Transitions that don’t feel like transitions</p>
-        </span>
-      </div>
-
-      <div class="ss4">
-        <img src="assets/SS4.png" alt="" />
-        <span>
-          <h1>Dynamic Context.</h1>
-          <p>Maintains live context around what you’re reading</p>
-        </span>
-      </div>
-
-      <div class="ss5">
-        <img src="assets/SS5.png" alt="" />
-        <span>
-          <h1>In-built Focus Assistance.</h1>
-          <p>Designed to respond without derailing your reading</p>
-        </span>
-      </div>
+  </div>
+  <!-- Canvases -->
+  <canvas id="myCanvas">Sorry, your browser does not support canvas.</canvas>
+  <canvas id="cropCanvas" width="500" height="500"
+    style="position: absolute; z-index: -1; pointer-events: none"></canvas>
+  <!-- Audio (Hidden) -->
+  <div class="musicp">
+    <button id="playButton" data-playing="true" onclick="playAudio()">
+      <img style="margin-left: 0.2rem" src="https://img.icons8.com/?size=100&id=fjx0LfGCNuZb&format=png&color=000000"
+        alt="" />
+    </button>
+    <div id="myaudiovol">
+      <input id="myaudiovo" type="range" value="100%" onchange="setvol(this.value)" />
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
+    <audio id="myaudio" loop muted src="assets/zen-garden.mp3"></audio>
+  </div>
+
+  <!-- Main Hero Section -->
+  <div class="main">
+    <h1 class="scroll-out">Jiva.</h1>
+    <p>An Immersive Space for Mindful Reading.</p>
+     <div class="buttons">
+      <!-- <a href="https://drive.google.com/file/d/1kzt0Z71O3RwXKsgsNzNn4v7gCjL_zXOL/view?usp=drive_link">
+        <button>
+          <img src="https://img.icons8.com/?size=100&id=fjx0LfGCNuZb&format=png&color=000000" alt="" />Experience Jiva.
+        </button>
+      </a> -->
       <a href="https://testflight.apple.com/join/PZWEa2Hu">
         <button>
-          <img
-            src="https://img.icons8.com/?size=100&id=30659&format=png&color=000000"
-            alt=""
-          />
-          Test App
+          <img src="https://img.icons8.com/?size=100&id=30840&format=png&color=000000" alt="" />
+          Test Jiva.
         </button>
       </a>
-      <div class="contact">
-        <p>jiva.communications@gmail.com</p>
-        <p>+91 9081813697</p>
-      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.jiva.app&hl=en_IN">
+        <button>
+          <img src="https://img.icons8.com/?size=100&id=22982&format=png&color=000000" alt="" />
+          Install Jiva.
+        </button>
+      </a>
     </div>
 
-    <!-- Hidden Images -->
-    <div style="display: none">
-      <img id="scream1" src="assets/bgimg1.png" />
-      <img id="scream2" src="assets/bgimg2.png" />
-      <img id="scream3" src="assets/bgimg3.png" />
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll">
+    <span>Scroll</span>
+    <img src="https://img.icons8.com/?size=100&id=2760&format=png&color=000000" alt="" />
+  </div>
+
+  <!-- Logo Sphere Section -->
+  <div id="sphere">
+    <img src="assets/logobig.png" alt="" />
+    <span>FOCUS PERSONIFIED.</span>
+  </div>
+
+  <!-- Screenshot Showcase
+  <div class="screenshots">
+    <div data-aos="zoom-out" class="ss1">
+      <img src="assets/SS1.png" alt="" />
+      <span>
+        <p>SHAPE YOUR</p>
+
+        <strong>FOCUS.</strong>
+      </span>
     </div>
 
-    <!-- Dynamic Image Loader -->
-    <div style="display: none" id="imgnodisplay"></div>
-    <script>
-      document.querySelector("#imgnodisplay").innerHTML += `
+    <div class="ss2">
+      <img src="assets/SS2.png" alt="" />
+      <span>
+        <h1>A coachable coach.</h1>
+        <p>Adaptive explanations tailored to how you learn best.</p>
+      </span>
+    </div>
+
+    <div class="ss3">
+      <img src="assets/SS3.png" alt="" />
+      <span>
+        <h1>Stop getting stuck.</h1>
+        <p>Get instant clarity whenever confusion hits.</p>
+      </span>
+    </div>
+    <div class="ss6">
+      <img src="assets/SS6.png" alt="" />
+      <span>
+        <h1>You already scroll too much.</h1>
+        <p>Talk to your book or navigate through your voice.</p>
+      </span>
+    </div>
+    <div class="ss4">
+      <img src="assets/SS4.png" alt="" />
+      <span>
+        <h1>An AI that doesn't daydream.</h1>
+        <p>Your focused AI study buddy, ready to explain as you read.</p>
+      </span>
+    </div>
+
+    <div class="ss5">
+      <img src="assets/SS5.png" alt="" />
+      <span>
+        <h1>Language is meant to be a bridge, not a barrier.</h1>
+        <p>Don’t let language be the reason you stop learning.</p>
+      </span>
+    </div>
+  </div> -->
+
+  <!-- Footer -->
+  <div class="footer">
+   
+    <div class="contact">
+      <p> biz@jiva.today</p>
+      <p>+91 9081813697</p>
+    </div>
+  </div>
+
+  <!-- Hidden Images -->
+  <div style="display: none">
+    <img id="scream1" src="assets/bgimg1.png" />
+    <img id="scream2" src="assets/bgimg2.png" />
+    <img id="scream3" src="assets/bgimg3.png" />
+  </div>
+
+  <!-- Dynamic Image Loader -->
+  <div style="display: none" id="imgnodisplay"></div>
+  <script>
+    document.querySelector("#imgnodisplay").innerHTML += `
         <img id="distortionMap" src="assets/flame_02.png?t=${Date.now()}" crossorigin="anonymous" style="display: none" />
         <img id="maskImage" src="assets/flame_01.png?t=${Date.now()}" style="display: none" crossorigin="anonymous" />
       `;
-    </script>
+  </script>
 
-    <!-- External Libraries -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
-      integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+    integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
-      integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+    integrity="sha512-P2IDYZfqSwjcSjX0BKeNhwRUH8zRPGlgcWl5n6gBLzdi4Y5/0O4zaXrtO4K9TZK6Hn1BenYpKowuCavNandERg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-      AOS.init();
-      let siteHeight, siteWidth;
-    </script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    let siteHeight, siteWidth;
+  </script>
 
-    <!-- Jiva Dojo Script Loader -->
-    <script>
-      const script = document.createElement("script");
-      script.src = `https://codeturbulent.github.io/Basicstyles/jiva_dojo/stylescript.js?t=${Date.now()}`;
-      document.head.appendChild(script);
-    </script>
+  <!-- Jiva Dojo Script Loader -->
+  <script>
+    const script = document.createElement("script");
+    script.src = `https://codeturbulent.github.io/Basicstyles/jiva_dojo/stylescript.js?t=${Date.now()}`;
+    document.head.appendChild(script);
+  </script>
 
-    <!-- Local Scripts -->
-    <script src="script.js"></script>
-    <script src="mousehoverbycodeturbullent.js"></script>
-  </body>
+  <!-- Local Scripts -->
+  <script src="script.js?v=1.1.5"></script>
+  <script src="mousehoverbycodeturbullent.js"></script>
+</body>
+
 </html>
