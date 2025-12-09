@@ -7,8 +7,8 @@
     --clr-highlight: #0e0e0e;
     --font-primary: "Montserrat";
 
-    --font-heading: "VolterBlack";
-    --logofont: "AvenirHeavy";
+
+    --logofont: "JosefinSans";
     /* volter  */
     /* avenir  */
     /* verdana */
@@ -20,39 +20,11 @@
 }
 
 @font-face {
-    font-family: "AvenirMedium";
-    src: url("assets/fonts/AvenirLTProMedium.otf") format("opentype");
+    font-family: "JosefinSans";
+    src: url("assets/fonts/JosefinSans-SemiBold.ttf") format("truetype");
 }
 
-@font-face {
-    font-family: "AvenirBook";
-    src: url("assets/fonts/AvenirLTStd-Book.otf") format("opentype");
-}
 
-@font-face {
-    font-family: "AvenirHeavy";
-    src: url("assets/fonts/AvenirLTProHeavy.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "VerdanaRegular";
-    src: url("assets/fonts/verdana.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "VerdanaBold";
-    src: url("assets/fonts/verdanab.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "VolterBlack";
-    src: url("assets/fonts/Volter-Black.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "VolterRegular";
-    src: url("assets/fonts/Volter-Regular.ttf") format("truetype");
-}
 
 * {
     margin: 0;
@@ -110,7 +82,7 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    height: 80vh;
+    height: 95vh;
 
     h1 {
         margin-bottom: 2rem;
@@ -126,6 +98,53 @@ body {
         font-weight: 400;
         text-align: center;
     }
+       .buttons {
+        margin-top: 60px;
+        width: 100%;
+        display: flex;
+
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        a {
+            margin-top: 1rem;
+            text-decoration: none;
+            color: #020202;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #020202;
+        }
+
+        button {
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 50px;
+            border-radius: 50px;
+            border: 1px solid black;
+
+            font-size: 30px;
+            font-weight: 400;
+            font-family: var(--font-primary);
+            background-color: transparent;
+            background: rgba(209, 209, 209, 0.336);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(7.5px);
+            -webkit-backdrop-filter: blur(7.5px);
+            border: 1px solid rgba(142, 155, 180, 0.38);
+
+            img {
+                height: 30px;
+                margin-right: 1rem;
+            }
+        }
+
+    }
+
 }
 
 #sphere {
@@ -137,6 +156,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    display: none;
 
 
     /* From https://css.glass */
@@ -173,6 +193,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    display: none;
 
     span {
         margin-top: 0.8rem;
@@ -225,30 +246,24 @@ body {
     }
 
     .ss1 {
-        flex-direction: column;
-
-        position: relative;
+        flex-direction: row-reverse;
+        align-items: end;
 
         span {
-
             margin-top: 0;
+            margin-bottom: 9rem;
             margin-left: 0;
             width: max-content;
             height: max-content;
-            position: absolute;
+
             letter-spacing: 8%;
             top: 71.5%;
-            left: -101.5%;
+            left: -99%;
 
             display: flex;
 
-            strong:nth-child(4) {
-                display: none;
-            }
 
-            br:nth-child(2) {
-                display: none;
-            }
+
 
             p {
                 margin-top: 0rem;
@@ -315,48 +330,67 @@ body {
 
 .footer {
     display: flex;
-    height: 60vh;
-    align-items: center;
+    height: 40vh;
+    width: 100%;
+    align-items: end;
     justify-content: center;
     flex-direction: column;
 
-    a {
-        text-decoration: none;
-        color: #020202;
-    }
-
-    a:visited {
-        text-decoration: none;
-        color: #020202;
-    }
-
-    button {
+    .buttons {
+        width: 100%;
         display: flex;
+        flex-direction: column;
+
         align-items: center;
-        justify-content: center;
-        padding: 16px 50px;
-        border-radius: 50px;
-        border: 1px solid black;
 
-        font-size: 30px;
-        font-weight: 700;
-        font-family: "inter";
-        background-color: transparent;
-
-        img {
-            height: 35px;
-            margin-right: 1rem;
+        a {
+            margin-top: 1rem;
+            text-decoration: none;
+            color: #020202;
         }
+
+        a:visited {
+            text-decoration: none;
+            color: #020202;
+        }
+
+        button {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 50px;
+            border-radius: 50px;
+            border: 1px solid black;
+
+            font-size: 30px;
+            font-weight: 400;
+            font-family: var(--font-primary);
+            background-color: transparent;
+            background: rgba(209, 209, 209, 0.336);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(7.5px);
+            -webkit-backdrop-filter: blur(7.5px);
+            border: 1px solid rgba(142, 155, 180, 0.38);
+
+            img {
+                height: 30px;
+                margin-right: 1rem;
+            }
+        }
+
     }
 
     .contact {
         margin-top: 3rem;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: end;
         justify-content: center;
         font-size: 24px;
         gap: 1rem;
+
+
     }
 }
 
@@ -492,6 +526,10 @@ body {
     }
 }
 
+hidden {
+    color: transparent;
+}
+
 @media only screen and (max-width: 1300px) {
     body {
 
@@ -547,24 +585,30 @@ body {
             span {
                 font-size: 40px;
                 top: 61.5%;
-                left: 23.5%;
+                left: 26.5%;
                 flex-direction: column;
             }
         }
     }
 
     .footer {
-        button {
-            font-size: 28px;
+        align-items: center;
 
-        }
 
-        .contact {
-            font-size: 22px;
+        & .buttons {
+            & button {
+                /* font-size: 30px; */
+                font-size: 19px;
+            }
+
+
+            .contact {
+                font-size: 22px;
+                align-items: center;
+            }
         }
     }
 }
-
 
 @media only screen and (max-width: 800px) {
     #cropCanvas {
@@ -814,7 +858,7 @@ body {
                 margin-left: 0;
 
                 h1 {
-                    margin-right: 7rem;
+                    margin-right: 2rem;
                     text-align: center;
                 }
 
@@ -881,7 +925,7 @@ body {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 18px;
             gap: 1rem;
         }
     }
