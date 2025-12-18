@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  /* background-color: saddlebrown; */
+  background-color: rgb(225, 225, 225);
+  height: 200vh;
+  font-family: "JosefinSans";
+}
+
+@font-face {
+  font-family: "JosefinSans";
+  src: url("assets/fonts/JosefinSans-SemiBold.ttf") format("truetype");
+}
+
+header {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  display: flex;
+  align-items: center;
+  > * {
+    background: rgba(255, 255, 255, 0.189);
+    border-radius: 4rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.9px);
+    -webkit-backdrop-filter: blur(6.9px);
+    border: 1px solid rgba(255, 255, 255, 1);
+  }
+
+  .audio {
+    height: 3.8rem;
+    width: 3.8rem;
+    margin: 0.7rem;
+  }
+  .header {
+    height: 4rem;
+    width: 60vw;
+    margin: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   > * {
+      min-width: 20px;
+      margin: 0px 1.85rem;
+    }
+    .logo {
+      font-size: 2.5rem;
+      .logoname{
+              margin: 0px 0.35rem;
+
+      }
+    }
+    .navi{
+        margin-top:0.35rem  ;
+        font-size: 1.5rem;
+        width: 40%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        span >a{
+
+            text-decoration: none;
+            color: black;
+        }
+    }
+  }
+}
