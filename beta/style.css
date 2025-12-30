@@ -138,27 +138,20 @@ body {
             display: flex;
 
             .ctabtn {
-                /* color: #2D5D5D;
                 font-family: 'Avenir Lite';
-                margin: 2px 0.8rem 0 0.1rem;
-             
+                margin: 2px 2rem 0 0.1rem;
+                display: flex;
+                justify-content: space-around;
+                /* color: #2D5D5D;
                 box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px ;
                 border-radius: 11rem;
-                display: flex;
                 width: 12rem;
-                padding: 0.4rem;
-                justify-content: space-around; */
- color: black;
-                font-family: 'Avenir Lite';
-                margin: 2px 0.8rem 0 0.1rem;
+                padding: 0.4rem;*/
+                color: black;
                 border: #484848 1px solid;
                 border-radius: 0.4rem;
-                display: flex;
                 width: 11rem;
                 padding: 0.25rem;
-                justify-content: space-around;
-
-
                 .ctalogo {
                     display: flex;
                     align-items: center;
@@ -182,15 +175,17 @@ body {
             }
         }
     }
-    .heroright{
+
+    .heroright {
         width: 40%;
         display: flex;
         align-items: center;
         justify-content: end;
-        img{
+
+        img {
             height: 80vh;
-        
-          backdrop-filter:  drop-shadow( #2A2A2A 20px 20px 25px)
+
+            backdrop-filter: drop-shadow(#2A2A2A 20px 20px 25px)
         }
     }
 
