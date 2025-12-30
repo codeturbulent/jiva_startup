@@ -54,14 +54,14 @@ header {
 
     .navi {
         padding-top: 0.3rem;
-        color: #2D5D5D;
+display: none;
 
         ul {
             list-style: none;
 
             li {
                 a {
-                    color: #484848;
+                          color: #2D5D5D;
                 }
             }
         }
