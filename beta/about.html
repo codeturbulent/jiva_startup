@@ -1,284 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Jiva.</title>
-     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-
-    <style>
-        /* --- GLOBAL & RESET --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Avenir Lite', sans-serif;
-            background-color: #fefefe;
-            position: relative;
-            min-height: 100vh;
-            color: #333;
-        }
-
-        a { text-decoration: none; color: #2D5D5D; }
-
-        /* --- HEADER & FOOTER PLACEHOLDERS (Matches your CSS) --- */
-        header {
-            z-index: 100;
-            position: fixed;
-            height: 4rem;
-            width: 100%;
-            display: flex;
-            background-color: #faffff;
-            box-shadow: #484848 0px 2px 10px;
-        }
-
-        .headercover { height: 4rem; }
-
-        footer {
-            height: 8rem;
-            background-color: #faffff;
-            box-shadow: rgba(0, 0, 0, 0.25) 0px -4px 4px;
-        }
-
-
-        /* --- ABOUT CONTAINER (Clean Card Style) --- */
-        .about-container {
-            width: 80%; /* Slightly wider to fit 3 founders */
-            margin: 60px auto;
-            padding: 40px;
-            /* Typography */
-        h1, h2, h3 { font-family: "Josefin Sans", sans-serif; color: #2D5D5D; }
-        
-        .hero-section { text-align: center; padding: 20px 0 60px 0; }
-        .hero-section h1 { font-size: 3.5rem; margin-bottom: 20px; }
-        .hero-section p { font-size: 1.3rem; color: #5a7a7a; max-width: 700px; margin: 0 auto; line-height: 1.6; }
-
-        /* Grid Layouts for Mission/Story */
-        .grid-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 80px;
-            align-items: center;
-        }
-
-        .content-block h2 { font-size: 2rem; margin-bottom: 15px; }
-        .content-block p { font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 20px; }
-
-        .stat-card {
-            background-color: #faffff;
-            border: 1px solid #99C1C1;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(45, 93, 93, 0.1);
-        }
-        .stat-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-
-        /* --- FOUNDERS SECTION STYLES --- */
-        .founders-section {
-            margin-top: 60px;
-            margin-bottom: 60px;
-            text-align: center;
-        }
-
-        .founders-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        /* Optional underline for title */
-        .founders-title::after {
-            content: '';
-            display: block;
-            width: 50%;
-            height: 3px;
-            background: #99C1C1;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        .founders-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .founder-card {
-            background: #fff;
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #f0f0f0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .founder-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(45, 93, 93, 0.1);
-        }
-
-        .founder-img-placeholder {
-            width: 120px;
-            height: 120px;
-            background-color: #f0f8f8;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #99C1C1;
-            border: 2px solid #fff;
-            box-shadow: 0 0 0 2px #99C1C1;
-        }
-
-        .founder-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .founder-name {
-            font-family: "Josefin Sans", sans-serif;
-            font-size: 1.4rem;
-            color: #2D5D5D;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .founder-role {
-            font-size: 0.85rem;
-            color: #99C1C1;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .founder-bio {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #666;
-            text-align: center;
-        }
-
-        /* Quote Section */
-        .team-section {
-            text-align: center;
-            margin-top: 40px;
-            padding: 40px;
-            background-color: #faffff;
-            border-radius: 15px;
-            border: 1px solid #eefbfb;
-        }
-
-        }
-
-      
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .grid-section { grid-template-columns: 1fr; gap: 30px; }
-            .founders-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-            .hero-section h1 { font-size: 2.5rem; }
-            .about-container { padding: 20px; margin: 30px 15px; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="aboutstyle.css">
 </head>
+
 <body>
-
     <header></header>
-    <div class="headercover"></div>
-
-    <img class="pageimg1" src="assets/vector.png" alt="">
-    
+    <div class="headercover"></div> <img class="pageimg1" src="assets/vector.png" alt="">
     <div class="about-container">
-        
-        <div class="hero-section">
+        <div class="herosec">
             <h1>Reading, Reimagined.</h1>
-            <p>Jiva is an AI-powered companion that transforms how you interact with documents. We turn static PDFs into dynamic, voice-controlled conversations.</p>
+            <p>Jiva is an AI-powered companion that transforms how you interact with documents. We turn static PDFs into
+                dynamic, voice-controlled conversations.</p>
         </div>
-
-        <div class="grid-section">
-            <div class="content-block">
-                <h2>Our Mission</h2>
-                <p>We believe knowledge shouldn't be locked behind tedious scrolling. Our mission is to make information accessible, interactive, and effortless.</p>
-                <p>Whether you are a student crunching through research papers or a professional reviewing contracts, Jiva gives your documents a voice.</p>
-            </div>
-            <div class="stat-card">
-                <h3>Voice First</h3>
-                <p>Built with advanced voice recognition and synthesis, allowing you to learn without looking at a screen.</p>
-            </div>
+        <div class="secondsec">
+            <h2 class="sectitle">Our Mission</h2>
+            <p class="sectionpara">We believe knowledge shouldn't be locked behind tedious scrolling. Our mission is to make information
+                accessible, interactive, and effortless.</p>
+            <p class="sectionpara">Whether you are a student crunching through research papers or a professional reviewing contracts, Jiva
+                gives your documents a voice.</p>
         </div>
-
-        <div class="grid-section">
-            <div class="stat-card" style="border-color: #2D5D5D;">
-                <h3>Privacy Focused</h3>
-                <p>Your documents are yours. We process data efficiently and securely, prioritizing your digital safety.</p>
-            </div>
-            <div class="content-block">
-                <h2>The Story</h2>
-                <p>Jiva started with a simple frustration: reading on screens is exhausting. We combined the power of Large Language Models (LLMs) with intuitive voice controls to solve this.</p>
-            </div>
+        <div class="secondsec">
+            <h2 class="sectitle">The Story</h2>
+            <p class="sectionpara">Jiva started with a simple frustration: reading on screens is exhausting. We combined the power of Large
+                Language Models (LLMs) with intuitive voice controls to solve this.</p>
         </div>
-
         <div class="founders-section">
             <h2 class="founders-title">Meet The Team</h2>
-            
+              <div class="team-section">
+            <p> "We aren't just building an app; we are building a second brain that listens and speaks." </p>
+        </div>
             <div class="founders-grid">
-                
                 <div class="founder-card">
-                    <div class="founder-img-placeholder">
-                        <img src="assets/palak_placeholder.png" onerror="this.style.display='none'" class="founder-img" alt="Palak Desai"> 
-                        <span style="position:absolute;">Photo</span>
-                    </div>
+                    <div class="founder-img"> <img src="https://pic.pnnet.dev/256x256"
+                            onerror="this.style.display='none'" class="founder-img" alt="Palak Desai"> </div>
                     <div class="founder-name">Palak Desai</div>
                     <div class="founder-role">Founder & CEO</div>
-                   
                 </div>
-
                 <div class="founder-card">
-                    <div class="founder-img-placeholder">
-                        <img src="assets/shraddha_placeholder.png" onerror="this.style.display='none'" class="founder-img" alt="Shraddha Misty">
-                        <span style="position:absolute;">Photo</span>
-                    </div>
+                    <div class="founder-img"> <img src="https://pic.pnnet.dev/256x256"
+                            onerror="this.style.display='none'" class="founder-img" alt="Shraddha Misty"> </div>
                     <div class="founder-name">Shraddha Misty</div>
                     <div class="founder-role">Founder & CDO</div>
-                 
                 </div>
-
                 <div class="founder-card">
-                    <div class="founder-img-placeholder">
-                        <img src="assets/himanshu_placeholder.png" onerror="this.style.display='none'" class="founder-img" alt="Himanshu Yadav">
-                        <span style="position:absolute;">Photo</span>
-                    </div>
+                    <div class="founder-img"> <img src="https://pic.pnnet.dev/256x256"
+                            onerror="this.style.display='none'" class="founder-img" alt="Himanshu Yadav"> </div>
                     <div class="founder-name">Himanshu Yadav</div>
-                    <div class="founder-role">CTO</div>
-                   
+                    <div class="founder-role">Founding Engineer</div>
                 </div>
-
             </div>
         </div>
-
-        <div class="team-section">
-            <p style="font-style: italic; font-size: 1.2rem; color: #2D5D5D;">
-                "We aren't just building an app; we are building a second brain that listens and speaks."
-            </p>
-        </div>
-
-    </div>
-
-    <img class="pageimg2" src="assets/vector.png" alt="">
-
+      
+    </div> <img class="pageimg2" src="assets/vector.png" alt="">
     <footer></footer>
-
     <script src="assets/autoload.js"></script>
 </body>
+
 </html>
