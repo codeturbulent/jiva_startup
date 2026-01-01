@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Avenir Lite';
+    src: url('../fonts/AvenirLTProLight.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avenir Lite italic';
+    src: url('../fonts/AvenirLTProLightOblique.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body {
+    font-family: 'Avenir Lite';
+    background-color: #fefefe;
+    position: relative;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: #2D5D5D;
+}
+
+
+header {
+    z-index: 100;
+    position: fixed;
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    padding: 2px 20%;
+    background-color: #faffff;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Avenir Lite';
+
+    box-shadow: #484848 0px 2px 10px;
+
+    .logo {
+        font-size: 2.3rem;
+        font-family: "Josefin Sans", sans-serif;
+        font-weight: 0;
+        color: #2D5D5D;
+    }
+
+    .new {
+        font-size: 1.2rem;
+        padding-top: 0.3rem;
+        color: #2D5D5D;
+    }
+
+    .navi {
+        padding-top: 0.3rem;
+
+
+        ul {
+            list-style: none;
+            display: flex;
+
+            li {
+                margin: 1px 10px;
+
+                a {
+                    color: #2D5D5D;
+                }
+            }
+        }
+
+        font-size: 0.8rem;
+
+    }
+
+    .cta {
+        padding-top: 0.3rem;
+
+        font-size: 0.8rem;
+        color: #2D5D5D;
+    }
+}
+
+.headercover {
+    height: 4rem;
+}
+
+.pageimg1 {
+    width: 100%;
+    position: absolute;
+    top: 3.5rem;
+    z-index: -1;
+    right: 0;
+    height: calc(100vh - 3.5rem);
+    pointer-events: none;
+}
+
+.pageimg2 {
+    width: 100%;
+    position: absolute;
+    bottom: 8rem;
+    transform: rotate(180deg);
+    z-index: -1;
+    left: 0;
+    height: calc(100vh - 3.5rem);
+    pointer-events: none;
+}
+
+footer {
+    height: 8rem;
+    background-color: #faffff;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px -4px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.5rem;
+    flex-direction: column;
+    font-family: 'Avenir Lite';
+
+    span {
+        color: #99C1C1;
+        margin: 0 1.5rem;
+    }
+
+}
