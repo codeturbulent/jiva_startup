@@ -98,13 +98,11 @@
             animation: shake 0.3s ease-in-out;
         }
 
-        /* Error Message Text */
         .error-msg {
             color: var(--error);
             font-size: 1rem;
             margin-top: 10px;
             display: none;
-            /* Hidden by default */
         }
 
         textarea {
@@ -241,6 +239,20 @@
             color: var(--primary);
         }
 
+        /* Start Page Specifics */
+        .start-page-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .start-title {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
         @keyframes shake {
             0% {
                 transform: translateX(0);
@@ -270,13 +282,23 @@
     <div id="form-container">
         <form id="typeform">
 
-            <div class="slide active" data-step="1">
+            <div class="slide active" data-step="start">
+                <div class="start-page-content">
+                    <h1 class="start-title">Feedback Form</h1>
+                    <span class="sub-text">We would love to hear your thoughts.<br>It will only take 2 minutes.</span>
+                    <br>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">Start</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="1">
                 <h2><span class="q-num">1 &rarr;</span> What can we call you?</h2>
                 <span class="sub-text">What is your name? *</span>
                 <input type="text" id="name" placeholder="Type your answer here..." autocomplete="off">
                 <div class="error-msg" id="error-name">Please enter your name.</div>
 
                 <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
                     <button type="button" class="nav-btn" onclick="nextSlide()">OK ✓</button>
                 </div>
             </div>
@@ -415,16 +437,19 @@
             const slide = slides[currentStep];
             let isValid = true;
 
-            // 1. Reset previous errors on this slide
+            // Reset previous errors on this slide
             const inputs = slide.querySelectorAll('input, textarea');
             inputs.forEach(el => el.classList.remove('input-error'));
             const errorMsgs = slide.querySelectorAll('.error-msg');
             errorMsgs.forEach(el => el.style.display = 'none');
 
-            // 2. Determine type of slide and validate
+            // Step 0: Start Page (No validation needed)
+            if (currentStep === 0) {
+                return true;
+            }
 
             // Step 1: Name
-            if (currentStep === 0) {
+            else if (currentStep === 1) {
                 const nameInput = document.getElementById('name');
                 if (nameInput.value.trim() === "") {
                     showError(nameInput, 'error-name');
@@ -433,10 +458,10 @@
             }
 
             // Step 2: Email (Strict Check)
-            else if (currentStep === 1) {
+            else if (currentStep === 2) {
                 const emailInput = document.getElementById('email');
                 const emailVal = emailInput.value.trim();
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Standard email regex
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
                 if (emailVal === "") {
                     showError(emailInput, 'error-email', "Please enter your email.");
@@ -448,28 +473,22 @@
             }
 
             // Step 3 & 4: Radio Buttons (Platform & Device)
-            else if (currentStep === 2 || currentStep === 3) {
+            else if (currentStep === 3 || currentStep === 4) {
                 const radioGroup = slide.querySelector('input[type="radio"]:checked');
                 if (!radioGroup) {
-                    // Show error message for radio group
-                    const errorId = currentStep === 2 ? 'error-platform' : 'error-devicetype';
+                    const errorId = currentStep === 3 ? 'error-platform' : 'error-devicetype';
                     document.getElementById(errorId).style.display = 'block';
                     isValid = false;
                 }
             }
 
             // Step 5: Satisfaction Scale
-            else if (currentStep === 4) {
+            else if (currentStep === 5) {
                 const satValue = document.getElementById('satisfaction').value;
                 if (satValue === "") {
                     document.getElementById('error-satisfaction').style.display = 'block';
                     isValid = false;
                 }
-            }
-
-            // Step 6: Feedback
-            else if (currentStep === 5) { // Assuming submit checks validation too
-                // Checked in submitForm usually, but if nextSlide is called (logic consistency)
             }
 
             return isValid;
@@ -498,7 +517,6 @@
         // --- UI Interactions ---
 
         function selectRadio(element) {
-            // clear error if exists
             const slide = slides[currentStep];
             slide.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
 
@@ -511,7 +529,6 @@
         }
 
         function selectScale(element, value) {
-            // clear error
             document.getElementById('error-satisfaction').style.display = 'none';
 
             const allItems = element.parentElement.querySelectorAll('.scale-item');
@@ -525,6 +542,7 @@
         document.addEventListener('keydown', function (event) {
             if (event.key === "Enter") {
                 event.preventDefault();
+                // Step 0 (Start Page) should also work with Enter
                 if (currentStep < slides.length - 1) {
                     nextSlide();
                 } else {
@@ -549,20 +567,17 @@
                 feedback: document.getElementById('feedback').value
             };
 
-            // YOUR GOOGLE SCRIPT URL GOES HERE
             const scriptURL = 'https://script.google.com/macros/s/AKfycbxnPtJDZqMzZ6PIBNDCmysBpCuuT33dXSWucVYCPIU4ukYGAaCZLBinQ2HYbxo_KxJR/exec';
 
             fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
-                // CHANGE THIS LINE BELOW:
                 headers: {
                     'Content-Type': 'text/plain;charset=utf-8'
                 },
                 body: JSON.stringify(formData)
             })
                 .then(response => {
-                    // With no-cors, we can't check response.ok, so we assume success if no network error
                     document.getElementById('typeform').style.display = 'none';
                     document.getElementById('success-message').style.display = 'block';
                 })
