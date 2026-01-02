@@ -62,6 +62,9 @@ header {
     }
 
     .navi {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding-top: 0.3rem;
 
 
@@ -80,10 +83,11 @@ header {
 
         font-size: 0.8rem;
 
+
     }
 
     .cta {
-        padding-top: 0.3rem;
+        padding-left: 1rem;
 
         font-size: 0.8rem;
         color: #2D5D5D;

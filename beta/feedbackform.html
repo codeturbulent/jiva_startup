@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #2D5D5D;
+            --text: #484848;
+            --bg-btn: #faffff;
+            --white: #ffffff;
+            --error: #e74c3c;
+        }
+
+        body {
+            font-family: 'Avenir Lite', 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #form-container {
+            width: 100%;
+            max-width: 700px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .slide.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: normal;
+            color: var(--primary);
+        }
+
+        .q-num {
+            opacity: 0.5;
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .sub-text {
+            color: var(--text);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            display: block;
+            opacity: 0.8;
+        }
+
+        /* Inputs */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            font-size: 2rem;
+            padding: 10px 0;
+            outline: none;
+            background: transparent;
+            color: var(--primary);
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* Error state styling */
+        input.input-error,
+        textarea.input-error {
+            border-bottom: 2px solid var(--error) !important;
+            animation: shake 0.3s ease-in-out;
+        }
+
+        /* Error Message Text */
+        .error-msg {
+            color: var(--error);
+            font-size: 1rem;
+            margin-top: 10px;
+            display: none;
+            /* Hidden by default */
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        /* Radio Options */
+        .options-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 15px 30px;
+            border-radius: 11rem;
+            background: var(--white);
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .radio-option:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .radio-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 8px rgba(45, 93, 93, 0.3);
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Scale */
+        .scale-grid {
+            display: flex;
+            justify-content: space-between;
+            max-width: 500px;
+            margin: 30px 0;
+        }
+
+        .scale-item {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: 0.2s;
+            color: var(--text);
+        }
+
+        .scale-item:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .scale-item.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            max-width: 500px;
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        /* Navigation */
+        .nav-container {
+            margin-top: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            border: none;
+            background-color: var(--bg-btn);
+            font-family: inherit;
+            color: var(--primary);
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+            border-radius: 11rem;
+            padding: 1rem 3rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .nav-btn:active {
+            transform: translateY(2px);
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-family: inherit;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        #success-message {
+            text-align: center;
+            display: none;
+        }
+
+        #success-message h2 {
+            color: var(--primary);
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="form-container">
+        <form id="typeform">
+
+            <div class="slide active" data-step="1">
+                <h2><span class="q-num">1 &rarr;</span> What can we call you?</h2>
+                <span class="sub-text">What is your name? *</span>
+                <input type="text" id="name" placeholder="Type your answer here..." autocomplete="off">
+                <div class="error-msg" id="error-name">Please enter your name.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK ✓</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="2">
+                <h2><span class="q-num">2 &rarr;</span> How can we contact you?</h2>
+                <span class="sub-text">Your email address *</span>
+                <input type="email" id="email" placeholder="name@example.com" autocomplete="off">
+                <div class="error-msg" id="error-email">Please enter a valid email address.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK ✓</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="3">
+                <h2><span class="q-num">3 &rarr;</span> Which device platform?</h2>
+                <span class="sub-text">Select one option *</span>
+                <div class="options-grid">
+                    <label class="radio-option" onclick="selectRadio(this)">
+                        <span>A</span> &nbsp; Android
+                        <input type="radio" name="platform" value="Android">
+                    </label>
+                    <label class="radio-option" onclick="selectRadio(this)">
+                        <span>B</span> &nbsp; Apple
+                        <input type="radio" name="platform" value="Apple">
+                    </label>
+                </div>
+                <div class="error-msg" id="error-platform">Please select a platform.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK ✓</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="4">
+                <h2><span class="q-num">4 &rarr;</span> Device type?</h2>
+                <span class="sub-text">Select one option *</span>
+                <div class="options-grid">
+                    <label class="radio-option" onclick="selectRadio(this)">
+                        <span>A</span> &nbsp; Phone
+                        <input type="radio" name="devicetype" value="Phone">
+                    </label>
+                    <label class="radio-option" onclick="selectRadio(this)">
+                        <span>B</span> &nbsp; Tablet
+                        <input type="radio" name="devicetype" value="Tablet">
+                    </label>
+                </div>
+                <div class="error-msg" id="error-devicetype">Please select a device type.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK ✓</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="5">
+                <h2><span class="q-num">5 &rarr;</span> How satisfied are you?</h2>
+
+                <div class="scale-grid">
+                    <div class="scale-item" onclick="selectScale(this, 1)">1</div>
+                    <div class="scale-item" onclick="selectScale(this, 2)">2</div>
+                    <div class="scale-item" onclick="selectScale(this, 3)">3</div>
+                    <div class="scale-item" onclick="selectScale(this, 4)">4</div>
+                    <div class="scale-item" onclick="selectScale(this, 5)">5</div>
+                    <input type="hidden" id="satisfaction" name="satisfaction">
+                </div>
+                <div class="error-msg" id="error-satisfaction">Please select a score.</div>
+
+                <div class="scale-labels">
+                    <span>Very Dissatisfied</span>
+                    <span>Very Satisfied</span>
+                </div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK ✓</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="6">
+                <h2><span class="q-num">6 &rarr;</span> Detailed feedback.</h2>
+                <span class="sub-text">Description *</span>
+                <textarea id="feedback" placeholder="Type your answer here..."></textarea>
+                <div class="error-msg" id="error-feedback">This field is required.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="submitForm()">Submit</button>
+                </div>
+            </div>
+
+        </form>
+
+        <div id="success-message">
+            <h2>Thank you!</h2>
+            <p style="font-size: 1.5rem; margin-top: 1rem;">Your feedback has been recorded.</p>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        // --- Navigation Logic ---
+        function nextSlide() {
+            if (!validateCurrentStep()) return;
+
+            if (currentStep < slides.length - 1) {
+                changeSlide(currentStep + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentStep > 0) {
+                changeSlide(currentStep - 1);
+            }
+        }
+
+        function changeSlide(newIndex) {
+            slides[currentStep].classList.remove('active');
+            currentStep = newIndex;
+            slides[currentStep].classList.add('active');
+
+            // Auto-focus logic
+            setTimeout(() => {
+                const input = slides[currentStep].querySelector('input:not([type="hidden"]), textarea');
+                if (input) input.focus();
+            }, 300);
+        }
+
+        // --- VALIDATION LOGIC ---
+        function validateCurrentStep() {
+            const slide = slides[currentStep];
+            let isValid = true;
+
+            // 1. Reset previous errors on this slide
+            const inputs = slide.querySelectorAll('input, textarea');
+            inputs.forEach(el => el.classList.remove('input-error'));
+            const errorMsgs = slide.querySelectorAll('.error-msg');
+            errorMsgs.forEach(el => el.style.display = 'none');
+
+            // 2. Determine type of slide and validate
+
+            // Step 1: Name
+            if (currentStep === 0) {
+                const nameInput = document.getElementById('name');
+                if (nameInput.value.trim() === "") {
+                    showError(nameInput, 'error-name');
+                    isValid = false;
+                }
+            }
+
+            // Step 2: Email (Strict Check)
+            else if (currentStep === 1) {
+                const emailInput = document.getElementById('email');
+                const emailVal = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Standard email regex
+
+                if (emailVal === "") {
+                    showError(emailInput, 'error-email', "Please enter your email.");
+                    isValid = false;
+                } else if (!emailRegex.test(emailVal)) {
+                    showError(emailInput, 'error-email', "Please enter a valid email address.");
+                    isValid = false;
+                }
+            }
+
+            // Step 3 & 4: Radio Buttons (Platform & Device)
+            else if (currentStep === 2 || currentStep === 3) {
+                const radioGroup = slide.querySelector('input[type="radio"]:checked');
+                if (!radioGroup) {
+                    // Show error message for radio group
+                    const errorId = currentStep === 2 ? 'error-platform' : 'error-devicetype';
+                    document.getElementById(errorId).style.display = 'block';
+                    isValid = false;
+                }
+            }
+
+            // Step 5: Satisfaction Scale
+            else if (currentStep === 4) {
+                const satValue = document.getElementById('satisfaction').value;
+                if (satValue === "") {
+                    document.getElementById('error-satisfaction').style.display = 'block';
+                    isValid = false;
+                }
+            }
+
+            // Step 6: Feedback
+            else if (currentStep === 5) { // Assuming submit checks validation too
+                // Checked in submitForm usually, but if nextSlide is called (logic consistency)
+            }
+
+            return isValid;
+        }
+
+        function validateFinalStep() {
+            const feedbackInput = document.getElementById('feedback');
+            // Reset Error
+            feedbackInput.classList.remove('input-error');
+            document.getElementById('error-feedback').style.display = 'none';
+
+            if (feedbackInput.value.trim() === "") {
+                showError(feedbackInput, 'error-feedback');
+                return false;
+            }
+            return true;
+        }
+
+        function showError(inputElement, errorMsgId, customText = null) {
+            inputElement.classList.add('input-error');
+            const msgEl = document.getElementById(errorMsgId);
+            if (customText) msgEl.innerText = customText;
+            msgEl.style.display = 'block';
+        }
+
+        // --- UI Interactions ---
+
+        function selectRadio(element) {
+            // clear error if exists
+            const slide = slides[currentStep];
+            slide.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+
+            const allOptions = element.parentElement.querySelectorAll('.radio-option');
+            allOptions.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            const radio = element.querySelector('input');
+            radio.checked = true;
+            setTimeout(nextSlide, 400);
+        }
+
+        function selectScale(element, value) {
+            // clear error
+            document.getElementById('error-satisfaction').style.display = 'none';
+
+            const allItems = element.parentElement.querySelectorAll('.scale-item');
+            allItems.forEach(item => item.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('satisfaction').value = value;
+            setTimeout(nextSlide, 400);
+        }
+
+        // Allow "Enter" key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                if (currentStep < slides.length - 1) {
+                    nextSlide();
+                } else {
+                    submitForm();
+                }
+            }
+        });
+
+        function submitForm() {
+            if (!validateFinalStep()) return;
+
+            const submitBtn = document.querySelector('.slide.active .nav-btn');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Sending...";
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                platform: document.querySelector('input[name="platform"]:checked')?.value,
+                devicetype: document.querySelector('input[name="devicetype"]:checked')?.value,
+                satisfaction: document.getElementById('satisfaction').value,
+                feedback: document.getElementById('feedback').value
+            };
+
+            // YOUR GOOGLE SCRIPT URL GOES HERE
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxnPtJDZqMzZ6PIBNDCmysBpCuuT33dXSWucVYCPIU4ukYGAaCZLBinQ2HYbxo_KxJR/exec';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                // CHANGE THIS LINE BELOW:
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    // With no-cors, we can't check response.ok, so we assume success if no network error
+                    document.getElementById('typeform').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    submitBtn.innerText = "Error";
+                    setTimeout(() => submitBtn.innerText = originalText, 2000);
+                });
+        }
+    </script>
+</body>
+
+</html>
