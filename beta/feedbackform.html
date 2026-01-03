@@ -17,7 +17,7 @@
         }
 
         body {
-            font-family: 'Avenir Lite', 'Inter', sans-serif; /* Added font stack back */
+            font-family: 'Avenir Lite', 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             background: transparent;
@@ -151,47 +151,6 @@
             display: none;
         }
 
-        /* Scale */
-        .scale-grid {
-            display: flex;
-            justify-content: space-between;
-            max-width: 500px;
-            margin: 30px 0;
-        }
-
-        .scale-item {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 2px solid #ccc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: 0.2s;
-            color: var(--text);
-        }
-
-        .scale-item:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .scale-item.selected {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .scale-labels {
-            display: flex;
-            justify-content: space-between;
-            max-width: 500px;
-            font-size: 1rem;
-            color: var(--text);
-        }
-
         /* Navigation */
         .nav-container {
             margin-top: 4rem;
@@ -241,20 +200,6 @@
 
         #success-message h2 {
             color: var(--primary);
-        }
-
-        /* Start Page Specifics */
-        .start-page-content {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .start-title {
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
         }
 
         @keyframes shake {
@@ -338,7 +283,19 @@
             </div>
 
             <div class="slide" data-step="5">
-                <h2><span class="q-num">5 &rarr;</span> Which feature did you find the most useful and why?</h2>
+                <h2><span class="q-num">5 &rarr;</span> Did Jiva simplify your reading by 1%? If so, why?</h2>
+                <span class="sub-text"></span>
+                <textarea id="feedback" placeholder="Type your answer here..."></textarea>
+                <div class="error-msg" id="error-feedback">This field is required.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="6">
+                <h2><span class="q-num">6 &rarr;</span> Which feature did you find the most useful and why?</h2>
                 <span class="sub-text"></span>
                 <textarea id="feature_useful" placeholder="Type your answer here..."></textarea>
                 <div class="error-msg" id="error-feature">This field is required.</div>
@@ -349,8 +306,8 @@
                 </div>
             </div>
 
-            <div class="slide" data-step="6">
-                <h2><span class="q-num">6 &rarr;</span> What would you change in Jiva to help you read better?</h2>
+            <div class="slide" data-step="7">
+                <h2><span class="q-num">7 &rarr;</span> What would you change in Jiva to help you read better?</h2>
                 <span class="sub-text"></span>
                 <textarea id="changes_needed" placeholder="Type your answer here..."></textarea>
                 <div class="error-msg" id="error-changes">This field is required.</div>
@@ -361,10 +318,11 @@
                 </div>
             </div>
 
-            <div class="slide" data-step="7">
-                <h2><span class="q-num">7 &rarr;</span> Anything else that you would like us to know?</h2>
+            <div class="slide" data-step="8">
+                <h2><span class="q-num">8 &rarr;</span> Anything else that you would like us to know?</h2>
                 <span class="sub-text">Share with us (Optional)</span>
                 <textarea id="anything_else" placeholder="Type your answer here..."></textarea>
+                
                 <div class="nav-container">
                     <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
                     <button type="button" class="nav-btn" onclick="submitForm()">Submit</button>
@@ -420,10 +378,11 @@
             inputs.forEach(el => el.classList.remove('input-error'));
             const errorMsgs = slide.querySelectorAll('.error-msg');
             errorMsgs.forEach(el => el.style.display = 'none');
-
-            // NOTE: Indices below are based on active slides in HTML NodeList.
-            // Start page is commented out, so it doesn't count.
             
+            // Indices (Assuming Start Page is REMOVED from DOM completely based on your last snippet)
+            // If start page exists in HTML but is hidden, indices might differ. 
+            // Based on the HTML above, "Name" is Index 0.
+
             // Step 1: Name (Index 0)
             if (currentStep === 0) {
                 const nameInput = document.getElementById('name');
@@ -466,10 +425,17 @@
                 }
             }
             
-            // (Old Satisfaction & Old Feedback are commented out, so indices skip to New Questions)
-
-            // Step 5: Most Useful Feature (Index 4)
+            // Step 5: Did Jiva Simplify (Index 4)
             else if (currentStep === 4) {
+                 const feedbackInput = document.getElementById('feedback');
+                if (feedbackInput.value.trim() === "") {
+                    showError(feedbackInput, 'error-feedback');
+                    isValid = false;
+                }
+            }
+
+            // Step 6: Most Useful Feature (Index 5)
+            else if (currentStep === 5) {
                 const featureInput = document.getElementById('feature_useful');
                 if (featureInput.value.trim() === "") {
                     showError(featureInput, 'error-feature');
@@ -477,8 +443,8 @@
                 }
             }
 
-            // Step 6: Changes Needed (Index 5)
-            else if (currentStep === 5) {
+            // Step 7: Changes Needed (Index 6)
+            else if (currentStep === 6) {
                 const changesInput = document.getElementById('changes_needed');
                 if (changesInput.value.trim() === "") {
                     showError(changesInput, 'error-changes');
@@ -486,19 +452,16 @@
                 }
             }
 
-            // Step 7: Anything Else (Index 6) - OPTIONAL
-            else if (currentStep === 6) {
-                // No validation required for optional field
+            // Step 8: Anything Else (Index 7) - OPTIONAL
+            else if (currentStep === 7) {
                 return true; 
             }
 
             return isValid;
         }
 
-        // Validate final step before submit (double check)
+        // Validate final step before submit
         function validateFinalStep() {
-            // Since the last step (Anything Else) is optional, we just return true.
-            // If you want it mandatory, check document.getElementById('anything_else') here.
             return true;
         }
 
@@ -508,8 +471,6 @@
             if (customText) msgEl.innerText = customText;
             msgEl.style.display = 'block';
         }
-
-        // --- UI Interactions ---
 
         function selectRadio(element) {
             const slide = slides[currentStep];
@@ -547,7 +508,8 @@
                 email: document.getElementById('email').value,
                 platform: document.querySelector('input[name="platform"]:checked')?.value,
                 devicetype: document.querySelector('input[name="devicetype"]:checked')?.value,
-                // New Fields mapped to JSON keys
+                // The new mapping
+                feedback: document.getElementById('feedback').value, // Did Jiva simplify?
                 mostuseful: document.getElementById('feature_useful').value,
                 changesneeded: document.getElementById('changes_needed').value,
                 anythingelse: document.getElementById('anything_else').value
