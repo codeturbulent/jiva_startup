@@ -75,7 +75,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-
+      transition: all 0.3s ease;
             .founder-name {
                 font-family: "Josefin Sans", sans-serif;
                 font-size: 1.4rem;
@@ -103,6 +103,14 @@
           }
             }
         }
+
+        .founder-card:hover{
+                   transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(45, 93, 93, 0.25);
+   
+            border-color: #2d5d5d;
+
+            }
 
     }
 }
