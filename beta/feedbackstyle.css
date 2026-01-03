@@ -150,7 +150,8 @@
             .step-header { justify-content: center; flex-direction: column; }
         }
 
-        .ctabtns {
+       
+             .ctabtns {
             margin-top: 1rem;
             display: flex;
 
@@ -165,12 +166,13 @@
                 border-radius: 11rem;
                 width: 13rem;
                 padding: 0.3rem 1rem;
-      transition: all 0.3s ease;
+
                 /* color: black;
                 border: #484848 1px solid;
                 border-radius: 0.4rem;
                 width: 11rem;
                 padding: 0.25rem; */
+                      transition: all 0.3s ease;
                 .ctalogo {
                     display: flex;
                     align-items: center;
@@ -182,7 +184,9 @@
 
                     display: flex;
                     flex-direction: column;
-
+                    span{
+                        color:#484848
+                    }
                     span:nth-child(1) {
                         font-size: 0.8rem;
                     }
