@@ -18,8 +18,7 @@ function addheaderfooter() {
 </div>
 `
     document.getElementsByTagName("footer")[0].innerHTML = `<div class="contact"> <a
-        href="mailto:biz@jiva.today?subject=Hello%20Jiva.%20Team"> biz@jiva.today</a> <span>•</span> <a
-        href="tel:+91+919081813697 "> +919081813697 </a></div>
+        href="mailto:biz@jiva.today?subject=Hello%20Jiva.%20Team"> biz@jiva.today</a></div>
 <div class="tags">Read Flexibly <span>•</span> Think Clearly <span>•</span> Stay in Flow </div>`
     var link = document.createElement('link');
     link.rel = 'stylesheet';
