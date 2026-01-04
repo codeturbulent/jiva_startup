@@ -159,9 +159,9 @@
 .founders-section {
   & .founders-grid {
     & .founder-card {
-      margin: 2rem;
+      margin: 1rem;
     }
-    overflow: scroll;
+    flex-wrap: wrap;
   }
 }
 
