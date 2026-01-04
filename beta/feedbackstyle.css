@@ -62,7 +62,7 @@
     transition: transform 0.4s ease;
 }
 
-.actionbtn.active .arrow-icon {
+.actionbtn.active1 .arrow-icon {
     transform: rotate(180deg);
 }
 
