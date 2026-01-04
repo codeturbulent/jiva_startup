@@ -429,7 +429,7 @@ div.section:nth-child(7) {
     /* justify-content: end; */
     width: 100%;
     justify-content: start;
-    margin-top: 2rem;
+ margin: 2rem auto;
   }
   /* margin-bottom: 7rem; */
   /* padding: 0rem 10% 0 16%; */
