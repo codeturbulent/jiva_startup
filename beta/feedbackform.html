@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Feedback Form</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
@@ -16,6 +16,10 @@
             --error: #e74c3c;
         }
 
+        * {
+            box-sizing: border-box; /* Crucial for responsive padding */
+        }
+
         body {
             font-family: 'Avenir Lite', 'Inter', sans-serif;
             margin: 0;
@@ -23,6 +27,8 @@
             background: transparent;
             color: var(--text);
             height: 100vh;
+            /* Allow scrolling on mobile if content is tall */
+            overflow-y: auto; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -33,6 +39,9 @@
             max-width: 700px;
             padding: 20px;
             position: relative;
+            /* Ensure it fits on small screens */
+            width: 90%; 
+            margin: 0 auto;
         }
 
         .slide {
@@ -53,6 +62,7 @@
             margin-bottom: 10px;
             font-weight: normal;
             color: var(--primary);
+            line-height: 1.2;
         }
 
         .q-num {
@@ -68,6 +78,7 @@
             margin-bottom: 30px;
             display: block;
             opacity: 0.8;
+            line-height: 1.4;
         }
         
         .sub-text span {
@@ -88,6 +99,7 @@
             color: var(--primary);
             font-family: inherit;
             transition: border-color 0.3s;
+            border-radius: 0; /* Removes default iOS rounded corners */
         }
 
         input:focus,
@@ -95,7 +107,6 @@
             border-bottom: 2px solid var(--primary);
         }
 
-        /* Error state styling */
         input.input-error,
         textarea.input-error {
             border-bottom: 2px solid var(--error) !important;
@@ -133,6 +144,8 @@
             display: flex;
             align-items: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            /* Make them look clickable on mobile */
+            -webkit-tap-highlight-color: transparent;
         }
 
         .radio-option:hover {
@@ -170,6 +183,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: transform 0.1s;
+            white-space: nowrap;
         }
 
         .nav-btn:active {
@@ -188,11 +202,6 @@
             transition: color 0.2s;
         }
 
-        .back-btn:hover {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-
         #success-message {
             text-align: center;
             display: none;
@@ -200,6 +209,67 @@
 
         #success-message h2 {
             color: var(--primary);
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 600px) {
+            
+            #form-container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            /* Shrink giant text */
+            h2 {
+                font-size: 1.8rem; 
+            }
+            
+            .sub-text {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+
+            /* Adjust input size */
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                font-size: 1.4rem;
+            }
+
+            /* Stack radio buttons if needed, or make them full width */
+            .options-grid {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .radio-option {
+                width: 100%;
+                justify-content: center;
+                padding: 12px;
+            }
+
+            /* Navigation Buttons Mobile */
+            .nav-container {
+                margin-top: 2rem;
+                flex-direction: row; /* Keep side by side */
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .nav-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            .back-btn {
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            /* Fix keyboard overlap issue */
+            body {
+                padding-top: 10vh;
+            }
         }
 
         @keyframes shake {
@@ -379,10 +449,6 @@
             const errorMsgs = slide.querySelectorAll('.error-msg');
             errorMsgs.forEach(el => el.style.display = 'none');
             
-            // Indices (Assuming Start Page is REMOVED from DOM completely based on your last snippet)
-            // If start page exists in HTML but is hidden, indices might differ. 
-            // Based on the HTML above, "Name" is Index 0.
-
             // Step 1: Name (Index 0)
             if (currentStep === 0) {
                 const nameInput = document.getElementById('name');
