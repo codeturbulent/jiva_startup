@@ -127,3 +127,42 @@
             border-radius: 3rem;
  box-shadow: 0 4px 4px #00000042;
 }
+@media (max-width: 600px) {
+
+
+.about-container {
+  /* width: 75%; */
+  width: 90%;
+}
+    
+
+.about-container {
+  & .herosec {
+    & h1 {
+      /* font-size: 3rem; */
+      font-size: 2rem;
+    }
+    & p {
+      /* font-size: 1.5rem; */
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.secondsec {
+  & .sectionpara {
+    /* font-size: 1.5rem; */
+    font-size: 1.2rem;
+  }
+}
+
+.founders-section {
+  & .founders-grid {
+    & .founder-card {
+      margin: 2rem;
+    }
+    overflow: scroll;
+  }
+}
+
+}

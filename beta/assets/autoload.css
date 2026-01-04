@@ -120,21 +120,161 @@ header {
     height: calc(100vh - 3.5rem);
     pointer-events: none;
 }
-
+.active{
+    display: flex;
+}
 footer {
-    height: 8rem;
     background-color: #faffff;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px -4px 4px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+    
+    /* Enforce minimum height */
+    min-height: 8rem;
+    
+    /* Vertically center the content */
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    font-size: 1.5rem;
-    flex-direction: column;
-    font-family: 'Avenir Lite';
+    justify-content: center;
+    
+    padding: 1rem;
+    font-family: 'Avenir Lite', sans-serif;
+    color: #484848;
+    margin-top: auto;
+}
 
-    span {
-        color: #99C1C1;
-        margin: 0 1.5rem;
+.footer-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+/* --- 1. Contact Section --- */
+.footer-item.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-item .label {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 0.2rem;
+}
+
+.email-link {
+    color: #2D5D5D;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.email-link:hover {
+    color: #1a3a3a;
+}
+
+.email-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #2D5D5D;
+    transition: width 0.3s ease;
+}
+
+.email-link:hover::after {
+    width: 100%;
+}
+
+/* --- 2. Mantra Section (Center) --- */
+.footer-item.mantra {
+    font-size: 1.4rem;
+    text-align: center;
+    color: #484848;
+}
+
+.footer-item.mantra span {
+    color: #99C1C1;
+    margin: 0 0.8rem;
+    font-weight: bold;
+}
+
+/* --- 3. Copyright Section (Right) --- */
+.footer-item.copyright {
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    footer {
+        height: auto; /* Allows growing if needed on very small screens */
+        padding: 2rem 1rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
     }
 
+    .footer-item.contact {
+        align-items: center;
+    }
+    
+    .footer-item.mantra {
+        font-size: 1.2rem;
+        order: -1;
+    }
 }
+.menuicon {
+  display: none;
+}
+
+  @media (max-width: 600px) {
+  
+
+
+    header{
+        padding: 2px 1rem;
+        height: 3.5rem;
+        width: calc(100vw);
+        .navi{
+            display: none;
+        }
+      
+        .logo{
+            font-size: 2rem;
+        }
+          .menuicon{
+        display: flex;
+        img{
+            height: 2rem;
+        }
+        #menuclose{
+          display: none;
+        }
+
+    }
+    }
+.active{
+    
+  /*! display: block; */position: inherit;
+  top: 3.5rem;
+  background: inherit;
+  width: inherit;
+  z-index: 100;
+  margin: 0;
+  left: 0;
+  display: flex;
+  padding: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.317) 0px 4px 4px;
+
+
+}
+  }
