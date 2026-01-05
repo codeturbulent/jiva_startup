@@ -201,7 +201,7 @@ footer {
 
 .footer-item.mantra span {
     color: #99C1C1;
-    margin: 0 0.8rem;
+    margin: 0 0.5rem;
     font-weight: bold;
 }
 
@@ -228,7 +228,7 @@ footer {
     }
     
     .footer-item.mantra {
-        font-size: 1.2rem;
+        font-size: 1rem;
         order: -1;
     }
 }
