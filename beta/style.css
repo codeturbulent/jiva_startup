@@ -213,7 +213,6 @@
 
         width: 40%;
         display: flex;
-        justify-content: end;
 
         img {
             height: 60vh;

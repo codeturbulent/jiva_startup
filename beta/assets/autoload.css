@@ -156,6 +156,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+        width: 200px;
+
 }
 
 .footer-item .label {
@@ -197,6 +199,7 @@ footer {
     font-size: 1.4rem;
     text-align: center;
     color: #484848;
+    
 }
 
 .footer-item.mantra span {
@@ -209,6 +212,7 @@ footer {
 .footer-item.copyright {
     font-size: 0.9rem;
     opacity: 0.6;
+    width: 200px;
 }
 
 /* --- Mobile Responsiveness --- */
