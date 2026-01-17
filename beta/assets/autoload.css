@@ -239,6 +239,27 @@ footer {
 .menuicon {
   display: none;
 }
+@media (max-width:1100px) {
+    header {
+  /* padding: 2px 20%; */
+  padding: 2px 8%;
+}
+
+
+    
+}
+@media (max-width:850px) {
+
+/* autoload.css | http://192.168.1.11:5500/jiva_startup/beta/assets/autoload.css?v=1768565101057 */
+
+header {
+  /* padding: 2px 20%; */
+  padding: 2px 2%;
+}
+
+
+    
+}
 
   @media (max-width: 600px) {
   
