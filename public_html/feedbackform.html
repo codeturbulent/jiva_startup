@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Feedback Form</title>
+    <meta name="description" content="Provide your feedback on the Jiva app. Help us understand your experience and contribute to making Jiva the best AI reading assistant." />
+    <meta name="keywords" content="Jiva feedback, app feedback, user survey, AI reading assistant feedback, product improvement" />
+    <meta name="author" content="Infinity 8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="language" content="English" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jiva.today/feedbackform.html" />
+    <meta property="og:title" content="Jiva Feedback Form" />
+    <meta property="og:description" content="Share your thoughts on the Jiva app. Your feedback is crucial for us to improve and enhance your reading experience." />
+    <meta property="og:image" content="https://jiva.today/assets/hero.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Jiva" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@JivaApp" />
+    <meta name="twitter:title" content="Jiva Feedback Form" />
+    <meta name="twitter:description" content="Help us make Jiva better for you. Fill out our feedback form and let us know about your experience." />
+    <meta name="twitter:image" content="https://jiva.today/assets/hero.png" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Jiva" />
+
+    <link rel="canonical" href="https://jiva.today/feedbackform.html" />
+            <link rel="shortcut icon" href="assets/jivafav.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/autoload.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #2D5D5D;
+            --text: #484848;
+            --bg-btn: #faffff;
+            --white: #ffffff;
+            --error: #e74c3c;
+        }
+
+        * {
+            box-sizing: border-box; /* Crucial for responsive padding */
+        }
+
+        body {
+            font-family: 'Avenir Lite', 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            color: var(--text);
+            height: 100vh;
+            /* Allow scrolling on mobile if content is tall */
+            overflow-y: auto; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #form-container {
+            width: 100%;
+            max-width: 700px;
+            padding: 20px;
+            position: relative;
+            /* Ensure it fits on small screens */
+            width: 90%; 
+            margin: 0 auto;
+        }
+
+        .slide {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .slide.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: normal;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .q-num {
+            opacity: 0.5;
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .sub-text {
+            color: var(--text);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            display: block;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .sub-text span {
+            color: #2D5D5D;
+        }
+
+        /* Inputs */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            font-size: 2rem;
+            padding: 10px 0;
+            outline: none;
+            background: transparent;
+            color: var(--primary);
+            font-family: inherit;
+            transition: border-color 0.3s;
+            border-radius: 0; /* Removes default iOS rounded corners */
+        }
+
+        input:focus,
+        textarea:focus {
+            border-bottom: 2px solid var(--primary);
+        }
+
+        input.input-error,
+        textarea.input-error {
+            border-bottom: 2px solid var(--error) !important;
+            animation: shake 0.3s ease-in-out;
+        }
+
+        .error-msg {
+            color: var(--error);
+            font-size: 1rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        /* Radio Options */
+        .options-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 15px 30px;
+            border-radius: 11rem;
+            background: var(--white);
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            /* Make them look clickable on mobile */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .radio-option:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .radio-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 8px rgba(45, 93, 93, 0.3);
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Navigation */
+        .nav-container {
+            margin-top: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            border: none;
+            background-color: var(--bg-btn);
+            font-family: inherit;
+            color: var(--primary);
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+            border-radius: 11rem;
+            padding: 1rem 3rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+            white-space: nowrap;
+        }
+
+        .nav-btn:active {
+            transform: translateY(2px);
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-family: inherit;
+            transition: color 0.2s;
+        }
+
+        #success-message {
+            text-align: center;
+            display: none;
+        }
+
+        #success-message h2 {
+            color: var(--primary);
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 600px) {
+            
+            #form-container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            /* Shrink giant text */
+            h2 {
+                font-size: 1.8rem; 
+            }
+            
+            .sub-text {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+
+            /* Adjust input size */
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                font-size: 1.4rem;
+            }
+
+            /* Stack radio buttons if needed, or make them full width */
+            .options-grid {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .radio-option {
+                width: 100%;
+                justify-content: center;
+                padding: 12px;
+            }
+
+            /* Navigation Buttons Mobile */
+            .nav-container {
+                margin-top: 2rem;
+                flex-direction: row; /* Keep side by side */
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .nav-btn {
+                padding: 0.8rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            .back-btn {
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            /* Fix keyboard overlap issue */
+            body {
+                padding-top: 10vh;
+            }
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="form-container">
+        <form id="typeform">
+
+            <div class="slide active" data-step="1">
+                <h2><span class="q-num">1 &rarr;</span> Your name.</h2>
+                <span class="sub-text"> </span>
+                <input type="text" id="name" placeholder="Type your answer here..." autocomplete="off">
+                <div class="error-msg" id="error-name">Please enter your name.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="2">
+                <h2><span class="q-num">2 &rarr;</span> Your email.</h2>
+                <span class="sub-text"></span>
+                <input type="email" id="email" placeholder="name@example.com" autocomplete="off">
+                <div class="error-msg" id="error-email">Please enter a valid email address.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="3">
+                <h2><span class="q-num">3 &rarr;</span> Which device platform?</h2>
+                 <span class="sub-text"></span>
+                <div class="options-grid">
+                    <label class="radio-option" onclick="selectRadio(this)">
+                      Android
+                        <input type="radio" name="platform" value="Android">
+                    </label>
+                    <label class="radio-option" onclick="selectRadio(this)">
+                      Apple
+                        <input type="radio" name="platform" value="Apple">
+                    </label>
+                </div>
+                <div class="error-msg" id="error-platform">Please select a platform.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="4">
+                <h2><span class="q-num">4 &rarr;</span> Device type?</h2>
+                 <span class="sub-text"></span>
+                <div class="options-grid">
+                    <label class="radio-option" onclick="selectRadio(this)">
+                        Phone
+                        <input type="radio" name="devicetype" value="Phone">
+                    </label>
+                    <label class="radio-option" onclick="selectRadio(this)">
+                         Tablet
+                        <input type="radio" name="devicetype" value="Tablet">
+                    </label>
+                </div>
+                <div class="error-msg" id="error-devicetype">Please select a device type.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="5">
+                <h2><span class="q-num">5 &rarr;</span> Did Jiva simplify your reading by 1%? If so, why?</h2>
+                <span class="sub-text"></span>
+                <textarea id="feedback" placeholder="Type your answer here..."></textarea>
+                <div class="error-msg" id="error-feedback">This field is required.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="6">
+                <h2><span class="q-num">6 &rarr;</span> Which feature did you find the most useful and why?</h2>
+                <span class="sub-text"></span>
+                <textarea id="feature_useful" placeholder="Type your answer here..."></textarea>
+                <div class="error-msg" id="error-feature">This field is required.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="7">
+                <h2><span class="q-num">7 &rarr;</span> What would you change in Jiva to help you read better?</h2>
+                <span class="sub-text"></span>
+                <textarea id="changes_needed" placeholder="Type your answer here..."></textarea>
+                <div class="error-msg" id="error-changes">This field is required.</div>
+
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="nextSlide()">OK</button>
+                </div>
+            </div>
+
+            <div class="slide" data-step="8">
+                <h2><span class="q-num">8 &rarr;</span> Anything else that you would like us to know?</h2>
+                <span class="sub-text">You can share your ideas, interests or anything else you would like team Jiva to know.</span>
+                <textarea id="anything_else" placeholder="Type your answer here..."></textarea>
+                
+                <div class="nav-container">
+                    <button type="button" class="back-btn" onclick="prevSlide()">Back</button>
+                    <button type="button" class="nav-btn" onclick="submitForm()">Submit</button>
+                </div>
+            </div>
+       
+        </form>
+
+        <div id="success-message">
+            <h2>Thank you!</h2>
+            <p style="font-size: 1.5rem; margin-top: 1rem;">Your feedback has been recorded.</p>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        // --- Navigation Logic ---
+        function nextSlide() {
+            if (!validateCurrentStep()) return;
+
+            if (currentStep < slides.length - 1) {
+                changeSlide(currentStep + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentStep > 0) {
+                changeSlide(currentStep - 1);
+            }
+        }
+
+        function changeSlide(newIndex) {
+            slides[currentStep].classList.remove('active');
+            currentStep = newIndex;
+            slides[currentStep].classList.add('active');
+
+            // Auto-focus logic
+            setTimeout(() => {
+                const input = slides[currentStep].querySelector('input:not([type="hidden"]), textarea');
+                if (input) input.focus();
+            }, 300);
+        }
+
+        // --- VALIDATION LOGIC ---
+        function validateCurrentStep() {
+            const slide = slides[currentStep];
+            let isValid = true;
+
+            // Reset previous errors on this slide
+            const inputs = slide.querySelectorAll('input, textarea');
+            inputs.forEach(el => el.classList.remove('input-error'));
+            const errorMsgs = slide.querySelectorAll('.error-msg');
+            errorMsgs.forEach(el => el.style.display = 'none');
+            
+            // Step 1: Name (Index 0)
+            if (currentStep === 0) {
+                const nameInput = document.getElementById('name');
+                if (nameInput.value.trim() === "") {
+                    showError(nameInput, 'error-name');
+                    isValid = false;
+                }
+            }
+
+            // Step 2: Email (Index 1)
+            else if (currentStep === 1) {
+                const emailInput = document.getElementById('email');
+                const emailVal = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (emailVal === "") {
+                    showError(emailInput, 'error-email', "Please enter your email.");
+                    isValid = false;
+                } else if (!emailRegex.test(emailVal)) {
+                    showError(emailInput, 'error-email', "Please enter a valid email address.");
+                    isValid = false;
+                }
+            }
+
+            // Step 3: Platform (Index 2)
+            else if (currentStep === 2) {
+                const radioGroup = slide.querySelector('input[name="platform"]:checked');
+                if (!radioGroup) {
+                    document.getElementById('error-platform').style.display = 'block';
+                    isValid = false;
+                }
+            }
+
+            // Step 4: Device Type (Index 3)
+            else if (currentStep === 3) {
+                const radioGroup = slide.querySelector('input[name="devicetype"]:checked');
+                if (!radioGroup) {
+                    document.getElementById('error-devicetype').style.display = 'block';
+                    isValid = false;
+                }
+            }
+            
+            // Step 5: Did Jiva Simplify (Index 4)
+            else if (currentStep === 4) {
+                 const feedbackInput = document.getElementById('feedback');
+                if (feedbackInput.value.trim() === "") {
+                    showError(feedbackInput, 'error-feedback');
+                    isValid = false;
+                }
+            }
+
+            // Step 6: Most Useful Feature (Index 5)
+            else if (currentStep === 5) {
+                const featureInput = document.getElementById('feature_useful');
+                if (featureInput.value.trim() === "") {
+                    showError(featureInput, 'error-feature');
+                    isValid = false;
+                }
+            }
+
+            // Step 7: Changes Needed (Index 6)
+            else if (currentStep === 6) {
+                const changesInput = document.getElementById('changes_needed');
+                if (changesInput.value.trim() === "") {
+                    showError(changesInput, 'error-changes');
+                    isValid = false;
+                }
+            }
+
+            // Step 8: Anything Else (Index 7) - OPTIONAL
+            else if (currentStep === 7) {
+                return true; 
+            }
+
+            return isValid;
+        }
+
+        // Validate final step before submit
+        function validateFinalStep() {
+            return true;
+        }
+
+        function showError(inputElement, errorMsgId, customText = null) {
+            inputElement.classList.add('input-error');
+            const msgEl = document.getElementById(errorMsgId);
+            if (customText) msgEl.innerText = customText;
+            msgEl.style.display = 'block';
+        }
+
+        function selectRadio(element) {
+            const slide = slides[currentStep];
+            slide.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+
+            const allOptions = element.parentElement.querySelectorAll('.radio-option');
+            allOptions.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            const radio = element.querySelector('input');
+            radio.checked = true;
+            setTimeout(nextSlide, 400);
+        }
+
+        // Allow "Enter" key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                if (currentStep < slides.length - 1) {
+                    nextSlide();
+                } else {
+                    submitForm();
+                }
+            }
+        });
+
+        function submitForm() {
+            if (!validateFinalStep()) return;
+
+            const submitBtn = document.querySelector('.slide.active .nav-btn');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Sending...";
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                platform: document.querySelector('input[name="platform"]:checked')?.value,
+                devicetype: document.querySelector('input[name="devicetype"]:checked')?.value,
+                // The new mapping
+                feedback: document.getElementById('feedback').value, // Did Jiva simplify?
+                mostuseful: document.getElementById('feature_useful').value,
+                changesneeded: document.getElementById('changes_needed').value,
+                anythingelse: document.getElementById('anything_else').value
+            };
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxnPtJDZqMzZ6PIBNDCmysBpCuuT33dXSWucVYCPIU4ukYGAaCZLBinQ2HYbxo_KxJR/exec';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    document.getElementById('typeform').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    submitBtn.innerText = "Error";
+                    setTimeout(() => submitBtn.innerText = originalText, 2000);
+                });
+        }
+    </script>
+</body>
+
+</html>
