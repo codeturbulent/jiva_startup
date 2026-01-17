@@ -11,4 +11,4 @@ Allow: /aboutstyle.css
 Allow: /feedbackstyle.css
 
 # Link to the Sitemap
-Sitemap: https://www.yourdomain.com/sitemap.xml
+Sitemap: https://jiva.today/sitemapjiva.xml
