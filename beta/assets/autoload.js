@@ -40,10 +40,6 @@ function addheaderfooter() {
         </div>
 
     </div>`
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'assets/autoload.css?v=' + new Date().getTime();
-    document.head.appendChild(link);
 }
 addheaderfooter()
 
